@@ -1,23 +1,46 @@
-# Ronas Tech — Portfólio
+# Portfólio Premium — Ronas Tech
 
-Site pessoal de **Ronael Moura**, Programador Full-Stack e criador do **Ronas Tech**.
+Versão moderna do portfólio profissional de **Ronael Moura**.
 
-## Estrutura
+## Arquivos
 
-- `index.html`
-- `style.css`
-- `script.js`
-- `assets/logo-ronas-tech.png`
-- `assets/ronael-moura.png`
+```text
+portfolio-ronas-tech-premium/
+├── index.html
+├── style.css
+├── script.js
+├── README.md
+└── assets/
+    ├── favicon.png
+    ├── logo-ronas-tech.webp
+    ├── og-cover.jpg
+    └── ronael-moura.webp
+```
 
-## O que falta personalizar
+## Recursos
 
-No arquivo `index.html`, substitua os links `#` por:
+- Layout moderno e responsivo
+- Modo escuro e claro
+- Menu para celular
+- Animações suaves ao rolar
+- Navegação com seção ativa
+- SEO e imagem para compartilhamento
+- Projetos em destaque
+- Links para GitHub, YouTube e site publicado
+- Sem bibliotecas externas
 
-- link do LinkedIn
-- link do YouTube
-- link do vídeo do ERESOLVE
+## Publicar a atualização
 
-## Publicação
+Copie o conteúdo desta pasta para dentro do seu repositório local `portfolio-ronas-tech`, substituindo os arquivos antigos.
 
-O projeto está pronto para ser publicado no GitHub Pages.
+No PowerShell, dentro da pasta do repositório:
+
+```powershell
+git add -A
+git commit -m "Moderniza o portfolio do Ronas Tech"
+git push
+```
+
+## Personalizar depois
+
+O LinkedIn não foi incluído porque o endereço ainda não foi informado. Quando tiver o link, adicione-o na seção de contato do `index.html`.
