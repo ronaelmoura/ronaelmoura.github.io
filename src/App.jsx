@@ -109,7 +109,7 @@ function App() {
           </div>
           <div className="hero-art reveal visible">
             <div className="portrait-frame">
-              <span className="frame-label">RONAEL_MOURA / 2026</span>
+              <span className="frame-label">RONAEL MOURA</span>
               <img src={portrait} alt="Ronael Moura, Desenvolvedor Full Stack" width="1100" height="1100" />
               <div className="code-card"><i /> <span>BUILDING NOW</span><strong>Ronas Desk v0.8</strong></div>
               <div className="stack-float"><span>REACT</span><b>+</b><span>NODE.JS</span></div>
