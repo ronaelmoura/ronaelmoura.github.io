@@ -1,4 +1,6 @@
 import { useEffect, useState } from 'react'
+import favicon from '../assets/favicon.png'
+import portrait from '../assets/ronael-moura.webp'
 
 const links = [
   ['Ronas Desk', 'ronas-desk'], ['Sobre', 'sobre'], ['Stack', 'stack'],
@@ -51,7 +53,7 @@ function Header() {
   return <header className={`header ${scrolled ? 'scrolled' : ''}`}>
     <div className="nav-wrap">
       <a className="brand" href="#inicio" aria-label="Ronas Tech — início">
-        <img src="assets/favicon.png" alt="" /><span><strong>RONAS</strong> TECH</span>
+        <img src={favicon} alt="" /><span><strong>RONAS</strong> TECH</span>
       </a>
       <nav className="nav-desktop" aria-label="Navegação principal">
         {links.map(([label, id]) => <a key={id} href={`#${id}`}>{label}</a>)}
@@ -108,7 +110,7 @@ function App() {
           <div className="hero-art reveal visible">
             <div className="portrait-frame">
               <span className="frame-label">RONAEL_MOURA / 2026</span>
-              <img src="assets/ronael-moura.webp" alt="Ronael Moura, Desenvolvedor Full Stack" width="1100" height="1100" />
+              <img src={portrait} alt="Ronael Moura, Desenvolvedor Full Stack" width="1100" height="1100" />
               <div className="code-card"><i /> <span>BUILDING NOW</span><strong>Ronas Desk v0.8</strong></div>
               <div className="stack-float"><span>REACT</span><b>+</b><span>NODE.JS</span></div>
             </div>
@@ -213,7 +215,7 @@ function App() {
 
       <section className="contact" id="contato"><div className="container"><div className="contact-card reveal"><p className="eyebrow"><span /> PRÓXIMO DESAFIO</p><h2>Vamos transformar uma ideia em <em>software real?</em></h2><p>Estou aberto a oportunidades como Desenvolvedor Full Stack, colaborações e projetos que gerem impacto.</p><div className="actions"><a className="button light" href="mailto:ronaelmoura240@gmail.com">Enviar um e-mail <Arrow /></a><a className="button outline" href="https://www.linkedin.com/in/ronael-moura" target="_blank" rel="noreferrer">Conectar no LinkedIn <Arrow /></a></div></div></div></section>
     </main>
-    <footer><div className="container footer-grid"><a className="brand" href="#inicio"><img src="assets/favicon.png" alt="" /><span><strong>RONAS</strong> TECH</span></a><p>Desenvolvido com foco, prática e evolução.</p><div><a href="https://github.com/ronaelmoura" target="_blank" rel="noreferrer">GitHub</a><a href="https://www.linkedin.com/in/ronael-moura" target="_blank" rel="noreferrer">LinkedIn</a><a href="https://www.youtube.com/@RonasTech" target="_blank" rel="noreferrer">YouTube</a><a href="#inicio">Topo ↑</a></div><small>© {new Date().getFullYear()} Ronael Moura. Todos os direitos reservados.</small></div></footer>
+    <footer><div className="container footer-grid"><a className="brand" href="#inicio"><img src={favicon} alt="" /><span><strong>RONAS</strong> TECH</span></a><p>Desenvolvido com foco, prática e evolução.</p><div><a href="https://github.com/ronaelmoura" target="_blank" rel="noreferrer">GitHub</a><a href="https://www.linkedin.com/in/ronael-moura" target="_blank" rel="noreferrer">LinkedIn</a><a href="https://www.youtube.com/@RonasTech" target="_blank" rel="noreferrer">YouTube</a><a href="#inicio">Topo ↑</a></div><small>© {new Date().getFullYear()} Ronael Moura. Todos os direitos reservados.</small></div></footer>
   </>
 }
 

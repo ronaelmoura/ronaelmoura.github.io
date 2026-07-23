@@ -24,9 +24,9 @@ npm run lint
 npm run build
 ```
 
-O Vite está configurado com o caminho-base `/portfolio-ronas-tech/` para publicação em:
+O Vite está configurado com o caminho-base `/` para publicação em:
 
-https://ronaelmoura.github.io/portfolio-ronas-tech/
+https://ronaelmoura.github.io/
 
 O `index.html` é a entrada de desenvolvimento do Vite. O comando de build gera a versão otimizada dentro de `dist/`.
 
