@@ -1,46 +1,44 @@
-# Portfólio Premium — Ronas Tech
+# Portfólio — Ronas Tech
 
-Versão moderna do portfólio profissional de **Ronael Moura**.
+Portfólio profissional de **Ronael Moura**, Desenvolvedor Full Stack e criador da Ronas Tech. A experiência destaca o **Ronas Desk**, um sistema Full Stack de gerenciamento de chamados técnicos.
 
-## Arquivos
+## Tecnologias
 
-```text
-portfolio-ronas-tech-premium/
-├── index.html
-├── style.css
-├── script.js
-├── README.md
-└── assets/
-    ├── favicon.png
-    ├── logo-ronas-tech.webp
-    ├── og-cover.jpg
-    └── ronael-moura.webp
+- React
+- Vite
+- JavaScript
+- CSS responsivo
+- ESLint
+
+## Desenvolvimento local
+
+```bash
+npm install
+npm run dev
 ```
 
-## Recursos
+## Validação e build
 
-- Layout moderno e responsivo
-- Modo escuro e claro
-- Menu para celular
-- Animações suaves ao rolar
-- Navegação com seção ativa
-- SEO e imagem para compartilhamento
-- Projetos em destaque
-- Links para GitHub, YouTube e site publicado
-- Sem bibliotecas externas
-
-## Publicar a atualização
-
-Copie o conteúdo desta pasta para dentro do seu repositório local `portfolio-ronas-tech`, substituindo os arquivos antigos.
-
-No PowerShell, dentro da pasta do repositório:
-
-```powershell
-git add -A
-git commit -m "Moderniza o portfolio do Ronas Tech"
-git push
+```bash
+npm run lint
+npm run build
 ```
 
-## Personalizar depois
+O Vite está configurado com o caminho-base `/portfolio-ronas-tech/` para publicação em:
 
-O LinkedIn não foi incluído porque o endereço ainda não foi informado. Quando tiver o link, adicione-o na seção de contato do `index.html`.
+https://ronaelmoura.github.io/portfolio-ronas-tech/
+
+O `index.html` é a entrada de desenvolvimento do Vite. O comando de build gera a versão otimizada dentro de `dist/`.
+
+## Conteúdo
+
+- Proposta de valor profissional
+- Ronas Desk, funcionalidades e roadmap
+- Tecnologias e processo de desenvolvimento
+- Jornada profissional e certificados
+- Outros projetos e canais de contato
+
+## Autor
+
+**Ronael Moura** — Desenvolvedor Full Stack  
+[GitHub](https://github.com/ronaelmoura) · [LinkedIn](https://www.linkedin.com/in/ronael-moura) · [YouTube](https://www.youtube.com/@RonasTech)
