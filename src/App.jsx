@@ -80,6 +80,66 @@ function RecruiterAI() {
   </section>
 }
 
+function IncidentSimulator() {
+  const incidents = [
+    {
+      id: 'login',
+      label: 'Tentativas de login',
+      title: 'Muitas tentativas falhas',
+      intro: 'O sistema precisa proteger a conta sem deixar o usuário sem orientação.',
+      result: 'A tentativa é bloqueada de forma controlada. A conta não é exposta e a API responde com um estado seguro.',
+      flow: [
+        ['Interface', 'Mostra feedback claro e evita ações duplicadas.'],
+        ['API Express', 'Recebe POST /api/auth/login e aplica a validação.'],
+        ['Segurança', 'Rate limit por IP: até 5 tentativas em 15 minutos.'],
+        ['Dados', 'Senha é comparada com bcrypt; nenhum hash retorna ao cliente.'],
+        ['Qualidade', 'Fluxos de autenticação são validados pelos testes do backend.'],
+      ],
+    },
+    {
+      id: 'sla',
+      label: 'SLA em risco',
+      title: 'Chamado perto do prazo',
+      intro: 'A equipe precisa enxergar prioridade, prazo e responsável antes de perder o SLA.',
+      result: 'O dashboard transforma o estado operacional em sinal de decisão: prazo, primeira resposta e tempo de resolução.',
+      flow: [
+        ['Interface', 'Filtra chamados e destaca prioridade, status e responsável.'],
+        ['API Express', 'Organiza os dados do dashboard e dos relatórios por período.'],
+        ['Regra de negócio', 'Calcula SLA, primeira resposta e tempo médio de resolução.'],
+        ['Dados', 'MySQL mantém chamados, comentários, datas reais e histórico.'],
+        ['Qualidade', 'Indicadores são tratados como parte do fluxo, não como enfeite.'],
+      ],
+    },
+    {
+      id: 'attachment',
+      label: 'Anexo sensível',
+      title: 'Documento precisa ficar privado',
+      intro: 'Um PDF ou imagem de chamado não deve virar um link público permanente.',
+      result: 'O arquivo fica protegido: acesso depende de sessão válida e o link de download tem duração limitada.',
+      flow: [
+        ['Interface', 'Exibe anexos apenas no contexto do chamado autorizado.'],
+        ['API Express', 'Valida sessão e permissão antes de liberar o download.'],
+        ['Segurança', 'Rotas protegidas e demonstração somente leitura evitam alterações indevidas.'],
+        ['Dados', 'MySQL armazena metadados; o arquivo fica em ativo autenticado.'],
+        ['Infraestrutura', 'Cloudinary gera URL temporária depois da autorização.'],
+      ],
+    },
+  ]
+  const [selected, setSelected] = useState(0)
+  const [running, setRunning] = useState(false)
+  const incident = incidents[selected]
+  useEffect(() => { setRunning(false); const id = setTimeout(() => setRunning(true), 110); return () => clearTimeout(id) }, [selected])
+  return <section className="incident-simulator reveal visible" aria-label="Simulador de incidente do Ronas Desk">
+    <div className="simulator-head"><div><p className="eyebrow"><span /> SIMULADOR DE INCIDENTE / RONAS DESK</p><h2>Veja o produto <em>pensar em produção.</em></h2><p>Escolha uma situação e acompanhe como as camadas do sistema respondem.</p></div><span className="simulator-badge"><i /> DADOS FICTÍCIOS</span></div>
+    <div className="incident-tabs" role="tablist" aria-label="Cenários de incidente">{incidents.map((item, index) => <button key={item.id} onClick={() => setSelected(index)} className={selected === index ? 'active' : ''} type="button" role="tab" aria-selected={selected === index}><span>0{index + 1}</span>{item.label}</button>)}</div>
+    <div className={`incident-board ${running ? 'running' : ''}`}>
+      <aside className="incident-source"><span>INCIDENTE DETECTADO</span><strong>{incident.title}</strong><p>{incident.intro}</p><i>↓</i></aside>
+      <div className="incident-flow">{incident.flow.map(([layer, detail], index) => <article key={layer} style={{ '--delay': `${index * 90}ms` }}><span>{String(index + 1).padStart(2, '0')}</span><div><small>{layer}</small><p>{detail}</p></div><i>→</i></article>)}</div>
+      <div className="incident-result"><span><i /> RESULTADO</span><p>{incident.result}</p><a href="https://github.com/ronaelmoura/ronas-desk" target="_blank" rel="noreferrer">Abrir implementação ↗</a></div>
+    </div>
+  </section>
+}
+
 function Header() {
   const [open, setOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
@@ -159,7 +219,7 @@ function App() {
         <a className="scroll-cue" href="#ronas-desk"><span /> Explore o projeto principal</a>
       </section>
 
-      <div className="container"><EngineeringLab /><RecruiterAI /></div>
+      <div className="container"><EngineeringLab /><RecruiterAI /><IncidentSimulator /></div>
 
       <section className="project-hero" id="ronas-desk">
         <div className="container">
