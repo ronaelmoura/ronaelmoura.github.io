@@ -140,6 +140,31 @@ function IncidentSimulator() {
   </section>
 }
 
+function ArchitectureExplorer() {
+  const layers = [
+    { id: 'frontend', number: '01', label: 'Interface', title: 'React 19 / Experiência do usuário', text: 'Rotas protegidas, feedback consistente, filtros, paginação e uma demonstração pública somente leitura.', proof: 'O visitante explora o produto sem colocar dados nem alterar a operação.', link: 'https://github.com/ronaelmoura/ronas-desk/tree/main/frontend' },
+    { id: 'api', number: '02', label: 'Orquestração', title: 'Express 5 / API REST', text: 'Rotas, controllers, middlewares e regras organizadas para manter as responsabilidades claras.', proof: 'A interface não carrega regra de negócio: ela conversa com uma API estruturada.', link: 'https://github.com/ronaelmoura/ronas-desk/tree/main/backend/src' },
+    { id: 'security', number: '03', label: 'Proteção', title: 'JWT / Permissões / Rate limit', text: 'Autenticação, controle por perfil, Helmet e limites de tentativas no login.', proof: 'Segurança faz parte do fluxo do produto — não é uma promessa no README.', link: 'https://github.com/ronaelmoura/ronas-desk/tree/main/backend/src/middlewares' },
+    { id: 'data', number: '04', label: 'Persistência', title: 'MySQL / Dados rastreáveis', text: 'Chamados, comentários, datas reais, auditoria e migrations versionadas em conexão TLS.', proof: 'O histórico permanece útil para operação, indicadores e tomada de decisão.', link: 'https://github.com/ronaelmoura/ronas-desk/tree/main/backend/sql' },
+    { id: 'cloud', number: '05', label: 'Entrega', title: 'Docker / Render / Cloudinary', text: 'Aplicação conteinerizada, banco Aiven com TLS e anexos autenticados com links temporários.', proof: 'O projeto não termina no localhost: existe uma demonstração em produção.', link: 'https://github.com/ronaelmoura/ronas-desk/blob/main/render.yaml' },
+  ]
+  const [active, setActive] = useState(0)
+  const layer = layers[active]
+  return <section className="architecture-explorer reveal visible" aria-label="Arquitetura explorável do Ronas Desk">
+    <div className="architecture-heading"><div><p className="eyebrow"><span /> MAPA DE ARQUITETURA / CLIQUE PARA EXPLORAR</p><h2>Cinco camadas.<br /><em>Uma entrega real.</em></h2></div><p>O Ronas Desk foi construído para que cada parte tenha responsabilidade clara — e cada decisão possa ser verificada.</p></div>
+    <div className="architecture-grid">
+      <div className="architecture-map" aria-label="Diagrama de arquitetura interativo">
+        <div className="architecture-core">RONAS<br /><strong>DESK</strong><i /></div>
+        {layers.map((item, index) => <button key={item.id} onClick={() => setActive(index)} className={active === index ? `architecture-node ${item.id} active` : `architecture-node ${item.id}`} type="button"><span>{item.number}</span><b>{item.label}</b><i /></button>)}
+        <svg viewBox="0 0 600 430" aria-hidden="true"><path d="M300 216 L128 82 M300 216 L476 82 M300 216 L95 247 M300 216 L505 248 M300 216 L303 374" /></svg>
+      </div>
+      <div className="architecture-detail">
+        <small>{layer.number} / {layer.label.toUpperCase()}</small><h3>{layer.title}</h3><p>{layer.text}</p><div><span>O que isto comprova</span><strong>{layer.proof}</strong></div><a href={layer.link} target="_blank" rel="noreferrer">Ver evidência no GitHub ↗</a>
+      </div>
+    </div>
+  </section>
+}
+
 function RecruiterMode({ onClose }) {
   const [step, setStep] = useState(0)
   const slides = [
@@ -242,7 +267,7 @@ function App() {
         <a className="scroll-cue" href="#ronas-desk"><span /> Explore o projeto principal</a>
       </section>
 
-      <div className="container"><EngineeringLab /><RecruiterAI /><IncidentSimulator /></div>
+      <div className="container"><EngineeringLab /><RecruiterAI /><IncidentSimulator /><ArchitectureExplorer /></div>
 
       <section className="project-hero" id="ronas-desk">
         <div className="container">
