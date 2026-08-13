@@ -72,11 +72,9 @@ function RecruiterAI() {
     'Decisão difícil': 'Escolhi tratar a demo como ambiente somente leitura. Assim um recrutador consegue explorar o produto sem expor credenciais nem alterar dados.',
   }
   const [question, setQuestion] = useState('Segurança')
-  const [visible, setVisible] = useState(false)
-  useEffect(() => { setVisible(false); const id = setTimeout(() => setVisible(true), 130); return () => clearTimeout(id) }, [question])
   return <section className="recruiter-ai reveal visible" id="ai">
     <div className="ai-head"><div><p className="eyebrow"><span /> ASSISTENTE LOCAL / SEM API</p><h2>Pergunte ao <em>Ronas Desk.</em></h2><p>Um guia de avaliação técnica criado a partir das decisões reais do projeto.</p></div><span className="ai-online"><i /> ONLINE</span></div>
-    <div className="ai-console"><div className="ai-prompts">{Object.keys(answers).map(item => <button className={question === item ? 'active' : ''} key={item} type="button" onClick={() => setQuestion(item)}>{item}</button>)}</div><div className="ai-terminal"><small>recruiter@portfolio:~$ pergunta sobre {question.toLowerCase()}</small><p className={visible ? 'typed' : ''}>{answers[question]}</p><div><a href="https://github.com/ronaelmoura/ronas-desk" target="_blank" rel="noreferrer">Ver evidência no código ↗</a><a href="https://ronas-desk.onrender.com/" target="_blank" rel="noreferrer">Testar demonstração ↗</a></div></div></div>
+    <div className="ai-console"><div className="ai-prompts">{Object.keys(answers).map(item => <button className={question === item ? 'active' : ''} key={item} type="button" onClick={() => setQuestion(item)}>{item}</button>)}</div><div className="ai-terminal"><small>recruiter@portfolio:~$ pergunta sobre {question.toLowerCase()}</small><p className="typed" key={question}>{answers[question]}</p><div><a href="https://github.com/ronaelmoura/ronas-desk" target="_blank" rel="noreferrer">Ver evidência no código ↗</a><a href="https://ronas-desk.onrender.com/" target="_blank" rel="noreferrer">Testar demonstração ↗</a></div></div></div>
   </section>
 }
 
@@ -126,13 +124,11 @@ function IncidentSimulator() {
     },
   ]
   const [selected, setSelected] = useState(0)
-  const [running, setRunning] = useState(false)
   const incident = incidents[selected]
-  useEffect(() => { setRunning(false); const id = setTimeout(() => setRunning(true), 110); return () => clearTimeout(id) }, [selected])
   return <section className="incident-simulator reveal visible" aria-label="Simulador de incidente do Ronas Desk">
     <div className="simulator-head"><div><p className="eyebrow"><span /> SIMULADOR DE INCIDENTE / RONAS DESK</p><h2>Veja o produto <em>pensar em produção.</em></h2><p>Escolha uma situação e acompanhe como as camadas do sistema respondem.</p></div><span className="simulator-badge"><i /> DADOS FICTÍCIOS</span></div>
     <div className="incident-tabs" role="tablist" aria-label="Cenários de incidente">{incidents.map((item, index) => <button key={item.id} onClick={() => setSelected(index)} className={selected === index ? 'active' : ''} type="button" role="tab" aria-selected={selected === index}><span>0{index + 1}</span>{item.label}</button>)}</div>
-    <div className={`incident-board ${running ? 'running' : ''}`}>
+    <div className="incident-board running" key={incident.id}>
       <aside className="incident-source"><span>INCIDENTE DETECTADO</span><strong>{incident.title}</strong><p>{incident.intro}</p><i>↓</i></aside>
       <div className="incident-flow">{incident.flow.map(([layer, detail], index) => <article key={layer} style={{ '--delay': `${index * 90}ms` }}><span>{String(index + 1).padStart(2, '0')}</span><div><small>{layer}</small><p>{detail}</p></div><i>→</i></article>)}</div>
       <div className="incident-result"><span><i /> RESULTADO</span><p>{incident.result}</p><a href="https://github.com/ronaelmoura/ronas-desk" target="_blank" rel="noreferrer">Abrir implementação ↗</a></div>
@@ -252,6 +248,29 @@ function DeliveryReplay() {
   </section>
 }
 
+function ProofLab() {
+  const experiences = [
+    { id: 'ai', label: 'Assistente', component: <RecruiterAI /> },
+    { id: 'incident', label: 'Incidentes', component: <IncidentSimulator /> },
+    { id: 'architecture', label: 'Arquitetura', component: <ArchitectureExplorer /> },
+    { id: 'decisions', label: 'Decisões', component: <DecisionJournal /> },
+    { id: 'replay', label: 'Replay', component: <DeliveryReplay /> },
+  ]
+  const [active, setActive] = useState('ai')
+  const selected = experiences.find(item => item.id === active)
+
+  return <section className="proof-lab reveal visible" id="laboratorio" aria-label="Laboratório de engenharia do Ronas Desk">
+    <div className="proof-lab-heading">
+      <div><p className="eyebrow"><span /> RONAS DESK ENGINEERING LAB</p><h2>Escolha uma prova.<br /><em>Explore a engenharia.</em></h2></div>
+      <p>Cinco experiências interativas em um único laboratório. Sem uma página interminável e sem esconder o raciocínio por trás do produto.</p>
+    </div>
+    <div className="proof-lab-nav" role="tablist" aria-label="Experiências técnicas">
+      {experiences.map((item, index) => <button key={item.id} type="button" role="tab" aria-selected={active === item.id} className={active === item.id ? 'active' : ''} onClick={() => setActive(item.id)}><span>0{index + 1}</span>{item.label}</button>)}
+    </div>
+    <div className="proof-lab-panel" role="tabpanel" key={active}>{selected.component}</div>
+  </section>
+}
+
 function RecruiterMode({ onClose }) {
   const [step, setStep] = useState(0)
   const slides = [
@@ -354,7 +373,7 @@ function App() {
         <a className="scroll-cue" href="#ronas-desk"><span /> Explore o projeto principal</a>
       </section>
 
-      <div className="container"><EngineeringLab /><RecruiterAI /><IncidentSimulator /><ArchitectureExplorer /><DecisionJournal /><DeliveryReplay /></div>
+      <div className="container"><EngineeringLab /><ProofLab /></div>
 
       <section className="project-hero" id="ronas-desk">
         <div className="container">
@@ -401,7 +420,7 @@ function App() {
       <section className="section about" id="sobre">
         <div className="container about-grid">
           <div className="about-title reveal"><p className="eyebrow"><span /> SOBRE MIM</p><h2>Técnica para construir.<br /><em>Curiosidade para evoluir.</em></h2></div>
-          <div className="about-copy reveal"><p className="large">Sou Desenvolvedor Full Stack e transformo problemas operacionais em <strong>produtos web claros, seguros e prontos para uso.</strong></p><p>Minha experiência em suporte de TI me ensinou a ouvir o usuário, investigar causas e assumir responsabilidade pela solução. Hoje aplico esse raciocínio em interfaces, APIs, bancos de dados e deploy.</p><p>Com o <strong>Ronas Desk</strong>, levei uma ideia por 19 sprints até a versão 1.0 em produção. Na <strong>Ronas Tech</strong>, continuo desenvolvendo soluções digitais e compartilhando aprendizados reais.</p>
+          <div className="about-copy reveal"><p className="large">Sou Desenvolvedor Full Stack e transformo problemas operacionais em <strong>produtos web claros, seguros e prontos para uso.</strong></p><p>Minha experiência em suporte de TI me ensinou a ouvir o usuário, investigar causas e assumir responsabilidade pela solução. Hoje aplico esse raciocínio em interfaces, APIs, bancos de dados e deploy.</p><p>Com o <strong>Ronas Desk</strong>, levei uma ideia por 19 sprints até a versão 1.0 em produção. Também transformo esse conhecimento em soluções para pequenos negócios por meio da <a className="inline-link" href="https://www.ronastech.com.br/" target="_blank" rel="noreferrer">Ronas Tech <Arrow /></a>.</p>
             <div className="about-links"><a href="https://www.linkedin.com/in/ronael-moura" target="_blank" rel="noreferrer">LinkedIn <Arrow /></a><a href="https://github.com/ronaelmoura" target="_blank" rel="noreferrer">GitHub <Arrow /></a></div>
           </div>
         </div>
@@ -425,7 +444,7 @@ function App() {
             <div className="journey-line" />
             <article><span>01</span><small>BASE TÉCNICA</small><h3>Suporte em TI</h3><p>Manutenção de computadores, atendimento a usuários e solução de problemas: a base para entender tecnologia pela perspectiva de quem usa.</p></article>
             <article><span>02</span><small>FORMAÇÃO</small><h3>Full Stack no SENAI</h3><p>670 horas de formação, conceito final APTO e fundamentos sólidos de front-end, back-end, APIs, banco de dados, testes e versionamento.</p></article>
-            <article><span>03</span><small>CONSTRUÇÃO PÚBLICA</small><h3>PortfÃ³lio e GitHub</h3><p>Projetos no GitHub, portfólio e tutoriais que transformam desafios de npm, Node.js, Git e Windows em conhecimento compartilhado.</p></article>
+            <article><span>03</span><small>CONSTRUÇÃO PÚBLICA</small><h3>Portfólio e GitHub</h3><p>Projetos no GitHub, portfólio e tutoriais que transformam desafios de npm, Node.js, Git e Windows em conhecimento compartilhado.</p></article>
             <article><span>04</span><small>PRODUTO EM PRODUÇÃO</small><h3>Ronas Desk v1.0</h3><p>19 sprints transformaram interface, API, dados, segurança, testes e infraestrutura em um produto demonstrável.</p></article>
           </div>
         </div>
@@ -444,8 +463,8 @@ function App() {
         <div className="container"><SectionHead tag="OUTROS PROJETOS" title="Aprendizado transformado em entregas." />
           <div className="other-grid">
             <article className="reveal"><span>01 · DEBUGGING</span><h3>Laboratório ERESOLVE npm</h3><p>Conflito real de dependências reproduzido, investigado e documentado passo a passo.</p><div><b>Node.js</b><b>npm</b><b>Documentação</b></div><a href="https://github.com/ronaelmoura/laboratorio-erro-eresolve-npm" target="_blank" rel="noreferrer">Ver código <Arrow /></a></article>
-            <article className="reveal"><span>02 · PRODUTO DIGITAL</span><h3>Site institucional</h3><p>Site institucional publicado para apresentar serviços, projetos reais e soluções digitais para negócios.</p><div><b>React</b><b>Vite</b><b>Vercel</b></div><a href="https://www.ronastech.com.br/" target="_blank" rel="noreferrer">Visitar projeto <Arrow /></a></article>
-            <article className="reveal"><span>03 · PORTFÓLIO</span><h3>Portfólio Ronas Tech</h3><p>Esta experiência: identidade profissional, performance e narrativa construídas em React.</p><div><b>React</b><b>UX/UI</b><b>SEO</b></div><a href="https://github.com/ronaelmoura/ronaelmoura.github.io" target="_blank" rel="noreferrer">Ver repositório <Arrow /></a></article>
+            <article className="reveal featured-project-card"><a className="other-project-media" href="https://www.ronastech.com.br/" target="_blank" rel="noreferrer" aria-label="Abrir site da Ronas Tech"><img src="https://www.ronastech.com.br/og-ronas-tech.png" alt="Prévia do site Ronas Tech" loading="lazy" width="1200" height="630" /></a><span>02 · NEGÓCIO DIGITAL</span><h3>Ronas Tech</h3><p>Site comercial criado para apresentar sites, sistemas e automações sob medida para pequenos negócios de todo o Brasil.</p><div><b>React</b><b>Vite</b><b>Produto</b></div><a href="https://www.ronastech.com.br/" target="_blank" rel="noreferrer">Visitar site oficial <Arrow /></a></article>
+            <article className="reveal"><span>03 · PORTFÓLIO</span><h3>Ronael Moura</h3><p>Esta experiência: identidade profissional, performance e narrativa técnica construídas em React.</p><div><b>React</b><b>UX/UI</b><b>SEO</b></div><a href="https://github.com/ronaelmoura/ronaelmoura.github.io" target="_blank" rel="noreferrer">Ver repositório <Arrow /></a></article>
           </div>
         </div>
       </section>

@@ -1,0 +1,123 @@
+.proof-lab {
+  position: relative;
+  margin: -34px 0 112px;
+  padding: clamp(24px, 4vw, 46px);
+  border: 1px solid rgba(25, 211, 255, .22);
+  border-radius: 30px;
+  background: linear-gradient(145deg, rgba(7, 18, 31, .96), rgba(5, 9, 14, .96));
+  box-shadow: 0 35px 100px rgba(0, 0, 0, .28);
+}
+
+.proof-lab-heading {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 34px;
+  margin-bottom: 28px;
+}
+
+.proof-lab-heading h2 {
+  margin-top: 16px;
+  font-size: clamp(2.35rem, 4vw, 4.3rem);
+  line-height: 1;
+  letter-spacing: -.06em;
+}
+
+.proof-lab-heading h2 em {
+  color: var(--cyan);
+  font-style: normal;
+}
+
+.proof-lab-heading > p {
+  max-width: 420px;
+  color: #93a7ba;
+  font-size: .86rem;
+  line-height: 1.7;
+}
+
+.proof-lab-nav {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 8px;
+  margin-bottom: 14px;
+  padding: 7px;
+  overflow-x: auto;
+  border: 1px solid rgba(255, 255, 255, .09);
+  border-radius: 15px;
+  background: #05090e;
+}
+
+.proof-lab-nav button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border: 1px solid transparent;
+  border-radius: 10px;
+  background: transparent;
+  color: #8194a7;
+  padding: 12px 9px;
+  cursor: pointer;
+  font: 600 .64rem var(--mono);
+  transition: .2s;
+}
+
+.proof-lab-nav button span {
+  color: #4d789d;
+  font-size: .52rem;
+}
+
+.proof-lab-nav button:hover,
+.proof-lab-nav button.active {
+  border-color: rgba(25, 211, 255, .35);
+  background: rgba(25, 211, 255, .09);
+  color: #e7f8ff;
+}
+
+.proof-lab-nav button.active span { color: var(--cyan); }
+.proof-lab-panel { animation: proof-panel-in .3s ease-out; }
+.proof-lab-panel > section { margin: 0 !important; border-radius: 20px; }
+.inline-link { color: var(--cyan); font-weight: 800; white-space: nowrap; }
+.featured-project-card { overflow: hidden; }
+
+.other-grid .other-project-media {
+  display: block;
+  margin: -28px -28px 24px;
+  aspect-ratio: 1200 / 630;
+  overflow: hidden;
+  border-bottom: 1px solid rgba(25, 211, 255, .2);
+  background: #05080d;
+}
+
+.other-project-media img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform .45s ease, filter .45s ease;
+}
+
+.featured-project-card:hover .other-project-media img {
+  transform: scale(1.035);
+  filter: saturate(1.1);
+}
+
+@keyframes proof-panel-in {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: none; }
+}
+
+@media (max-width: 800px) {
+  .proof-lab { margin: -15px 0 78px; padding: 22px 16px; }
+  .proof-lab-heading { display: block; }
+  .proof-lab-heading > p { margin-top: 17px; }
+  .proof-lab-nav { display: flex; justify-content: flex-start; }
+  .proof-lab-nav button { min-width: 112px; }
+  .proof-lab-panel > section { padding-right: 18px; padding-left: 18px; }
+}
+
+@media (max-width: 500px) {
+  .proof-lab-heading h2 { font-size: 2.45rem; }
+  .proof-lab-nav button { min-width: 103px; }
+  .other-grid .other-project-media { margin: -28px -28px 22px; }
+}
