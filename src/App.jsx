@@ -218,6 +218,40 @@ function DecisionJournal() {
   </section>
 }
 
+function DeliveryReplay() {
+  const events = [
+    { id: 'problem', number: '01', label: 'Operação', title: 'O problema deixou de ser abstrato', text: 'A ideia começou com uma necessidade operacional: centralizar chamados, clientes e prioridades em um fluxo que uma equipe pudesse realmente usar.', metric: 'Foco: problema e usuário' },
+    { id: 'product', number: '02', label: 'Produto', title: 'A base virou uma operação completa', text: 'Clientes, chamados, categorias, responsáveis, comentários, auditoria, portal do cliente, relatórios e indicadores entraram em ciclos incrementais.', metric: '19 sprints concluídas' },
+    { id: 'security', number: '03', label: 'Confiança', title: 'O produto ganhou camadas de proteção', text: 'Autenticação JWT, regras por perfil, demo somente leitura, headers seguros, rate limit e anexos privados reduziram riscos nos fluxos principais.', metric: 'Segurança integrada ao fluxo' },
+    { id: 'quality', number: '04', label: 'Qualidade', title: 'Evoluir passou a ter rede de segurança', text: 'Testes automatizados, lint e build são executados no CI para que uma mudança nova não quebre regras que já funcionam.', metric: '122 testes automatizados' },
+    { id: 'production', number: '05', label: 'Produção', title: 'O software saiu do computador', text: 'Docker, Nginx, Render, Aiven com TLS e Cloudinary conectam o código a uma demonstração pública e verificável.', metric: 'v1.0 estável online' },
+  ]
+  const [current, setCurrent] = useState(0)
+  const [playing, setPlaying] = useState(false)
+  useEffect(() => {
+    if (!playing) return undefined
+    const id = setInterval(() => setCurrent(value => {
+      if (value === events.length - 1) {
+        setPlaying(false)
+        return value
+      }
+      return value + 1
+    }), 1700)
+    return () => clearInterval(id)
+  }, [playing, events.length])
+  const event = events[current]
+  return <section className="delivery-replay reveal visible" aria-label="Replay de entrega do Ronas Desk">
+    <div className="replay-heading"><div><p className="eyebrow"><span /> REPLAY DE ENTREGA / 19 SPRINTS</p><h2>Do problema à<br /><em>produção.</em></h2></div><button type="button" onClick={() => { setCurrent(0); setPlaying(true) }} className="replay-play">{playing ? 'Executando replay…' : 'Reproduzir jornada'} <span>{playing ? 'Ⅱ' : '▶'}</span></button></div>
+    <div className="replay-progress" aria-label="Marcos da entrega">{events.map((item, index) => <button className={index === current ? 'active' : index < current ? 'done' : ''} onClick={() => { setCurrent(index); setPlaying(false) }} key={item.id} type="button"><i /><span>{item.number}</span><b>{item.label}</b></button>)}</div>
+    <div className="replay-screen">
+      <div className="replay-counter"><span>SPRINT / MARCO</span><strong>{event.number}</strong><i>{String(current + 1).padStart(2, '0')} / 05</i></div>
+      <div className="replay-content"><small>{event.label.toUpperCase()}</small><h3>{event.title}</h3><p>{event.text}</p><strong>{event.metric}</strong></div>
+      <div className="replay-pulse"><i /><i /><i /><i /><i /></div>
+    </div>
+    <div className="replay-footer"><span><i /> {playing ? 'REPLAY EM EXECUÇÃO' : 'MARCO SELECIONADO'}</span><a href="https://github.com/ronaelmoura/ronas-desk" target="_blank" rel="noreferrer">Ver a história no repositório ↗</a></div>
+  </section>
+}
+
 function RecruiterMode({ onClose }) {
   const [step, setStep] = useState(0)
   const slides = [
@@ -320,7 +354,7 @@ function App() {
         <a className="scroll-cue" href="#ronas-desk"><span /> Explore o projeto principal</a>
       </section>
 
-      <div className="container"><EngineeringLab /><RecruiterAI /><IncidentSimulator /><ArchitectureExplorer /><DecisionJournal /></div>
+      <div className="container"><EngineeringLab /><RecruiterAI /><IncidentSimulator /><ArchitectureExplorer /><DecisionJournal /><DeliveryReplay /></div>
 
       <section className="project-hero" id="ronas-desk">
         <div className="container">
