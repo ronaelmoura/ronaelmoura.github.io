@@ -1,6 +1,5 @@
-import { useEffect, useState } from 'react'
-import logo from '../assets/logo.png'
-import portrait from '../assets/ronael-moura.webp'
+﻿import { useEffect, useState } from 'react'
+const portrait = 'https://raw.githubusercontent.com/ronaelmoura/ronaelmoura.github.io/main/assets/ronael-moura.webp'
 
 const links = [
   ['Ronas Desk', 'ronas-desk'], ['Sobre', 'sobre'], ['Stack', 'stack'],
@@ -52,9 +51,7 @@ function Header() {
   }, [])
   return <header className={`header ${scrolled ? 'scrolled' : ''}`}>
     <div className="nav-wrap">
-      <a className="brand" href="#inicio" aria-label="Ronas Tech — início">
-        <img src={logo} alt="" /><span><strong>RONAS</strong> TECH</span>
-      </a>
+      <a className="brand" href="#inicio" aria-label="Ronael Moura - inicio"><span>RONAEL <strong>MOURA</strong></span></a>
       <nav className="nav-desktop" aria-label="Navegação principal">
         {links.map(([label, id]) => <a key={id} href={`#${id}`}>{label}</a>)}
       </nav>
@@ -113,6 +110,10 @@ function App() {
               <img src={portrait} alt="Ronael Moura, Desenvolvedor Full Stack" width="1100" height="1100" />
               <div className="code-card"><i /> <span>LIVE IN PRODUCTION</span><strong>Ronas Desk v1.0</strong></div>
               <div className="stack-float"><span>REACT</span><b>+</b><span>NODE.JS</span></div>
+              <div className="signal-console" aria-label="Fluxo de construcao de software">
+                <div><span className="signal-live" /> SISTEMA DE CONSTRUCAO</div>
+                <p><b>01</b> entender <i>-&gt;</i> <b>02</b> construir <i>-&gt;</i> <b>03</b> validar <i>-&gt;</i> <b>04</b> publicar</p>
+              </div>
             </div>
           </div>
         </div>
@@ -165,7 +166,7 @@ function App() {
         <div className="container about-grid">
           <div className="about-title reveal"><p className="eyebrow"><span /> SOBRE MIM</p><h2>Técnica para construir.<br /><em>Curiosidade para evoluir.</em></h2></div>
           <div className="about-copy reveal"><p className="large">Sou Desenvolvedor Full Stack e transformo problemas operacionais em <strong>produtos web claros, seguros e prontos para uso.</strong></p><p>Minha experiência em suporte de TI me ensinou a ouvir o usuário, investigar causas e assumir responsabilidade pela solução. Hoje aplico esse raciocínio em interfaces, APIs, bancos de dados e deploy.</p><p>Com o <strong>Ronas Desk</strong>, levei uma ideia por 19 sprints até a versão 1.0 em produção. Na <strong>Ronas Tech</strong>, continuo desenvolvendo soluções digitais e compartilhando aprendizados reais.</p>
-            <div className="about-links"><a href="https://www.linkedin.com/in/ronael-moura" target="_blank" rel="noreferrer">LinkedIn <Arrow /></a><a href="https://www.youtube.com/@RonasTech" target="_blank" rel="noreferrer">Canal Ronas Tech <Arrow /></a></div>
+            <div className="about-links"><a href="https://www.linkedin.com/in/ronael-moura" target="_blank" rel="noreferrer">LinkedIn <Arrow /></a><a href="https://github.com/ronaelmoura" target="_blank" rel="noreferrer">GitHub <Arrow /></a></div>
           </div>
         </div>
       </section>
@@ -188,7 +189,7 @@ function App() {
             <div className="journey-line" />
             <article><span>01</span><small>BASE TÉCNICA</small><h3>Suporte em TI</h3><p>Manutenção de computadores, atendimento a usuários e solução de problemas: a base para entender tecnologia pela perspectiva de quem usa.</p></article>
             <article><span>02</span><small>FORMAÇÃO</small><h3>Full Stack no SENAI</h3><p>670 horas de formação, conceito final APTO e fundamentos sólidos de front-end, back-end, APIs, banco de dados, testes e versionamento.</p></article>
-            <article><span>03</span><small>CONSTRUÇÃO PÚBLICA</small><h3>Ronas Tech</h3><p>Projetos no GitHub, portfólio e tutoriais que transformam desafios de npm, Node.js, Git e Windows em conhecimento compartilhado.</p></article>
+            <article><span>03</span><small>CONSTRUÇÃO PÚBLICA</small><h3>PortfÃ³lio e GitHub</h3><p>Projetos no GitHub, portfólio e tutoriais que transformam desafios de npm, Node.js, Git e Windows em conhecimento compartilhado.</p></article>
             <article><span>04</span><small>PRODUTO EM PRODUÇÃO</small><h3>Ronas Desk v1.0</h3><p>19 sprints transformaram interface, API, dados, segurança, testes e infraestrutura em um produto demonstrável.</p></article>
           </div>
         </div>
@@ -207,7 +208,7 @@ function App() {
         <div className="container"><SectionHead tag="OUTROS PROJETOS" title="Aprendizado transformado em entregas." />
           <div className="other-grid">
             <article className="reveal"><span>01 · DEBUGGING</span><h3>Laboratório ERESOLVE npm</h3><p>Conflito real de dependências reproduzido, investigado e documentado passo a passo.</p><div><b>Node.js</b><b>npm</b><b>Documentação</b></div><a href="https://github.com/ronaelmoura/laboratorio-erro-eresolve-npm" target="_blank" rel="noreferrer">Ver código <Arrow /></a></article>
-            <article className="reveal"><span>02 · PRODUTO DIGITAL</span><h3>Ronas Tech Site</h3><p>Site institucional publicado para apresentar serviços, projetos reais e soluções digitais para negócios.</p><div><b>React</b><b>Vite</b><b>Vercel</b></div><a href="https://www.ronastech.com.br/" target="_blank" rel="noreferrer">Visitar projeto <Arrow /></a></article>
+            <article className="reveal"><span>02 · PRODUTO DIGITAL</span><h3>Site institucional</h3><p>Site institucional publicado para apresentar serviços, projetos reais e soluções digitais para negócios.</p><div><b>React</b><b>Vite</b><b>Vercel</b></div><a href="https://www.ronastech.com.br/" target="_blank" rel="noreferrer">Visitar projeto <Arrow /></a></article>
             <article className="reveal"><span>03 · PORTFÓLIO</span><h3>Portfólio Ronas Tech</h3><p>Esta experiência: identidade profissional, performance e narrativa construídas em React.</p><div><b>React</b><b>UX/UI</b><b>SEO</b></div><a href="https://github.com/ronaelmoura/ronaelmoura.github.io" target="_blank" rel="noreferrer">Ver repositório <Arrow /></a></article>
           </div>
         </div>
@@ -215,7 +216,7 @@ function App() {
 
       <section className="contact" id="contato"><div className="container"><div className="contact-card reveal"><p className="eyebrow"><span /> PRÓXIMO DESAFIO</p><h2>Vamos transformar uma ideia em <em>software real?</em></h2><p>Estou aberto a oportunidades como Desenvolvedor Full Stack, colaborações e projetos que gerem impacto.</p><div className="actions"><a className="button light" href="mailto:ronaelmoura240@gmail.com">Enviar um e-mail <Arrow /></a><a className="button outline" href="https://www.linkedin.com/in/ronael-moura" target="_blank" rel="noreferrer">Conectar no LinkedIn <Arrow /></a></div></div></div></section>
     </main>
-    <footer><div className="container footer-grid"><a className="brand" href="#inicio"><img src={logo} alt="" /><span><strong>RONAS</strong> TECH</span></a><p>Desenvolvido com foco, prática e evolução.</p><div><a href="https://github.com/ronaelmoura" target="_blank" rel="noreferrer">GitHub</a><a href="https://www.linkedin.com/in/ronael-moura" target="_blank" rel="noreferrer">LinkedIn</a><a href="https://www.youtube.com/@RonasTech" target="_blank" rel="noreferrer">YouTube</a><a href="#inicio">Topo ↑</a></div><small>© {new Date().getFullYear()} Ronael Moura. Todos os direitos reservados.</small></div></footer>
+    <footer><div className="container footer-grid"><a className="brand" href="#inicio"><span>RONAEL <strong>MOURA</strong></span></a><p>Software com foco, pratica e evolucao continua.</p><div><a href="https://github.com/ronaelmoura" target="_blank" rel="noreferrer">GitHub</a><a href="https://www.linkedin.com/in/ronael-moura" target="_blank" rel="noreferrer">LinkedIn</a><a href="#inicio">Topo</a></div><small>{new Date().getFullYear()} Ronael Moura. Todos os direitos reservados.</small></div></footer>
   </>
 }
 
