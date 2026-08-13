@@ -8,25 +8,25 @@ const links = [
 ]
 
 const features = [
-  { icon: '01', title: 'Gestão de clientes', text: 'Cadastro, edição, pesquisa e controle de situação ativa ou inativa.' },
-  { icon: '02', title: 'Gestão de chamados', text: 'Categorias, prioridades e status para acompanhar cada atendimento.' },
-  { icon: '03', title: 'Histórico conectado', text: 'Clientes vinculados aos chamados, com contexto completo do suporte.' },
-  { icon: '04', title: 'Dashboard operacional', text: 'Indicadores de chamados abertos, em andamento e concluídos.' },
-  { icon: '05', title: 'API REST', text: 'Camada de serviços em Node.js e Express para uma integração consistente.' },
-  { icon: '06', title: 'Dados persistentes', text: 'Modelagem em MySQL pensada para integridade e evolução do produto.' },
+  { icon: '01', title: 'Operação de chamados', text: 'Prioridade, categoria, responsável, status, busca, filtros, ordenação e paginação.' },
+  { icon: '02', title: 'SLA e indicadores', text: 'Primeira resposta, tempo de resolução, prazos e métricas filtradas por período.' },
+  { icon: '03', title: 'Histórico e auditoria', text: 'Comentários, linha do tempo e registro rastreável das mudanças de cada chamado.' },
+  { icon: '04', title: 'Portal do cliente', text: 'Experiência dedicada para acompanhar solicitações, interagir e avaliar o atendimento.' },
+  { icon: '05', title: 'Segurança aplicada', text: 'JWT, rotas protegidas, rate limit, perfis de acesso e demonstração somente leitura.' },
+  { icon: '06', title: 'Anexos e notificações', text: 'Imagens e PDFs privados via Cloudinary, além de alertas conectados ao fluxo.' },
 ]
 
 const roadmap = [
-  { version: 'v0.8', state: 'Agora', title: 'Base operacional', text: 'CRUD de clientes e chamados, vínculos, filtros e histórico por cliente.', active: true },
-  { version: 'v0.9', state: 'Próximo', title: 'Controle e produtividade', text: 'Autenticação JWT, gestão de técnicos, anexos e dashboard avançado.' },
-  { version: 'v1.0', state: 'Lançamento', title: 'Produto completo', text: 'Relatórios, refinamento de testes, experiência final e deploy.' },
+  { version: '01', state: 'Produto', title: '19 sprints concluídas', text: 'Evolução incremental da base operacional até portal, SLA, relatórios, auditoria e automações.', active: true },
+  { version: '02', state: 'Engenharia', title: 'Arquitetura ponta a ponta', text: 'React no cliente, API REST em camadas, regras no backend e persistência relacional.' },
+  { version: '03', state: 'Produção', title: 'Deploy validado', text: 'Aplicação conteinerizada no Render, MySQL no Aiven com TLS e anexos no Cloudinary.' },
 ]
 
 const techGroups = [
   { eyebrow: 'Interface', icon: '◫', title: 'Front-End', text: 'Experiências rápidas, acessíveis e responsivas.', items: ['React', 'Vite', 'JavaScript', 'HTML5', 'CSS3'] },
   { eyebrow: 'Serviços', icon: '⌁', title: 'Back-End', text: 'APIs organizadas e regras de negócio bem definidas.', items: ['Node.js', 'Express', 'REST API', 'JSON', 'npm'] },
-  { eyebrow: 'Persistência', icon: '◉', title: 'Dados & Qualidade', text: 'Dados consistentes, validação e confiança na entrega.', items: ['MySQL', 'SQL', 'Postman', 'Testes', 'Documentação'] },
-  { eyebrow: 'Entrega', icon: '⌘', title: 'Workflow', text: 'Da ideia ao software publicado e versionado.', items: ['Git', 'GitHub', 'VS Code', 'Figma', 'Deploy'] },
+  { eyebrow: 'Persistência', icon: '◉', title: 'Dados & Qualidade', text: 'Dados consistentes, migrações e validação automatizada.', items: ['MySQL', 'SQL', 'Node Test Runner', 'ESLint', 'Oxlint'] },
+  { eyebrow: 'Entrega', icon: '⌘', title: 'Cloud & Workflow', text: 'Da ideia ao software publicado, seguro e versionado.', items: ['Docker', 'Nginx', 'Render', 'Aiven', 'Cloudinary'] },
 ]
 
 const process = [
@@ -103,15 +103,15 @@ function App() {
             </div>
             <div className="proof">
               <div><strong>670h</strong><span>Formação Full Stack</span></div>
-              <div><strong>React + Node</strong><span>Produto ponta a ponta</span></div>
-              <div><strong>Em evolução</strong><span>Aprendizado público</span></div>
+              <div><strong>122 testes</strong><span>Backend validado</span></div>
+              <div><strong>v1.0 online</strong><span>Produto entregue</span></div>
             </div>
           </div>
           <div className="hero-art reveal visible">
             <div className="portrait-frame">
               <span className="frame-label">RONAEL MOURA</span>
               <img src={portrait} alt="Ronael Moura, Desenvolvedor Full Stack" width="1100" height="1100" />
-              <div className="code-card"><i /> <span>BUILDING NOW</span><strong>Ronas Desk v0.8</strong></div>
+              <div className="code-card"><i /> <span>LIVE IN PRODUCTION</span><strong>Ronas Desk v1.0</strong></div>
               <div className="stack-float"><span>REACT</span><b>+</b><span>NODE.JS</span></div>
             </div>
           </div>
@@ -122,8 +122,8 @@ function App() {
       <section className="project-hero" id="ronas-desk">
         <div className="container">
           <div className="project-heading reveal">
-            <div><p className="eyebrow"><span /> PROJETO PRINCIPAL · EM DESENVOLVIMENTO</p><h2>Ronas <em>Desk</em></h2></div>
-            <p>Um sistema Full Stack de gerenciamento de chamados técnicos, criado para transformar rotinas de suporte em um fluxo simples, rastreável e eficiente.</p>
+            <div><p className="eyebrow"><span /> CASE PRINCIPAL · V1.0 EM PRODUÇÃO</p><h2>Ronas <em>Desk</em></h2></div>
+            <p>Uma plataforma Full Stack de Help Desk que centraliza clientes, equipe, chamados, SLA e indicadores em uma operação segura e rastreável.</p>
           </div>
           <div className="desk-showcase reveal">
             <div className="app-window">
@@ -138,33 +138,33 @@ function App() {
               </div>
             </div>
             <div className="showcase-copy">
-              <span className="version">VERSÃO ATUAL · v0.8</span>
-              <h3>Mais que um CRUD.<br />Um produto em evolução.</h3>
-              <p>O Ronas Desk simula um ambiente real de Help Desk e concentra a evolução técnica de Ronael: interface, API, regras de negócio, banco de dados e decisões de produto.</p>
-              <ul><li>React + Vite no front-end</li><li>Node.js + Express na API REST</li><li>MySQL para persistência de dados</li><li>Arquitetura em camadas</li></ul>
-              <a className="button primary" href="https://github.com/ronaelmoura/ronas-desk" target="_blank" rel="noreferrer">Explorar repositório <Arrow /></a>
+              <span className="version">ESTÁVEL · v1.0.0</span>
+              <h3>Da ideia ao deploy.<br />Um produto completo.</h3>
+              <p>Desenvolvi o Ronas Desk para demonstrar domínio do ciclo inteiro de software: experiência do usuário, API, regras de negócio, banco de dados, segurança, testes e produção.</p>
+              <ul><li>19 sprints concluídas e fluxos validados</li><li>122 testes automatizados aprovados no backend</li><li>MySQL com TLS e migrações versionadas</li><li>Docker, Nginx, Render, Aiven e Cloudinary</li></ul>
+              <div className="project-actions"><a className="button primary" href="https://ronas-desk.onrender.com/" target="_blank" rel="noreferrer">Testar demonstração <Arrow /></a><a className="text-link" href="https://github.com/ronaelmoura/ronas-desk" target="_blank" rel="noreferrer">Ver código <Arrow /></a></div>
             </div>
           </div>
         </div>
       </section>
 
       <section className="section features">
-        <div className="container"><SectionHead tag="FUNCIONALIDADES" title="Tudo o que o suporte precisa. Em um só fluxo." text="Cada módulo nasce de uma necessidade real e se conecta ao restante do produto." />
+        <div className="container"><SectionHead tag="PRODUTO EM FUNCIONAMENTO" title="Uma operação de suporte completa. Não apenas telas." text="Cada módulo se conecta às regras do negócio, preserva o histórico e respeita as permissões do usuário." />
           <div className="feature-grid">{features.map((item, index) => <article className="feature-card reveal" key={item.title}><div><span>{item.icon}</span><i>0{index+1}</i></div><h3>{item.title}</h3><p>{item.text}</p></article>)}</div>
         </div>
       </section>
 
       <section className="section roadmap-section">
-        <div className="container"><SectionHead tag="ROADMAP" title="Construindo em público. Evoluindo com propósito." />
+        <div className="container"><SectionHead tag="DO PROBLEMA À PRODUÇÃO" title="O que este projeto comprova na prática." />
           <div className="roadmap reveal">{roadmap.map(item => <article className={item.active ? 'active' : ''} key={item.version}><div className="road-dot" /><div className="road-meta"><strong>{item.version}</strong><span>{item.state}</span></div><h3>{item.title}</h3><p>{item.text}</p></article>)}</div>
-          <p className="road-note reveal">Roadmap vivo: prioridades podem evoluir conforme testes, feedback e aprendizado do produto.</p>
+          <p className="road-note reveal">A demonstração usa dados fictícios e um perfil somente leitura, permitindo avaliar o produto sem expor credenciais administrativas ou dados reais.</p>
         </div>
       </section>
 
       <section className="section about" id="sobre">
         <div className="container about-grid">
           <div className="about-title reveal"><p className="eyebrow"><span /> SOBRE MIM</p><h2>Técnica para construir.<br /><em>Curiosidade para evoluir.</em></h2></div>
-          <div className="about-copy reveal"><p className="large">Sou um Desenvolvedor Full Stack que acredita que a melhor forma de aprender é <strong>construindo, documentando e compartilhando.</strong></p><p>Minha experiência em suporte de TI me ensinou a ouvir, investigar e resolver. Hoje levo esse olhar para o desenvolvimento de interfaces, APIs e produtos digitais completos.</p><p>Na <strong>Ronas Tech</strong>, transformo erros e aprendizados reais em conteúdo técnico direto. No <strong>Ronas Desk</strong>, aplico essa evolução em um produto com propósito.</p>
+          <div className="about-copy reveal"><p className="large">Sou Desenvolvedor Full Stack e transformo problemas operacionais em <strong>produtos web claros, seguros e prontos para uso.</strong></p><p>Minha experiência em suporte de TI me ensinou a ouvir o usuário, investigar causas e assumir responsabilidade pela solução. Hoje aplico esse raciocínio em interfaces, APIs, bancos de dados e deploy.</p><p>Com o <strong>Ronas Desk</strong>, levei uma ideia por 19 sprints até a versão 1.0 em produção. Na <strong>Ronas Tech</strong>, continuo desenvolvendo soluções digitais e compartilhando aprendizados reais.</p>
             <div className="about-links"><a href="https://www.linkedin.com/in/ronael-moura" target="_blank" rel="noreferrer">LinkedIn <Arrow /></a><a href="https://www.youtube.com/@RonasTech" target="_blank" rel="noreferrer">Canal Ronas Tech <Arrow /></a></div>
           </div>
         </div>
@@ -189,7 +189,7 @@ function App() {
             <article><span>01</span><small>BASE TÉCNICA</small><h3>Suporte em TI</h3><p>Manutenção de computadores, atendimento a usuários e solução de problemas: a base para entender tecnologia pela perspectiva de quem usa.</p></article>
             <article><span>02</span><small>FORMAÇÃO</small><h3>Full Stack no SENAI</h3><p>670 horas de formação, conceito final APTO e fundamentos sólidos de front-end, back-end, APIs, banco de dados, testes e versionamento.</p></article>
             <article><span>03</span><small>CONSTRUÇÃO PÚBLICA</small><h3>Ronas Tech</h3><p>Projetos no GitHub, portfólio e tutoriais que transformam desafios de npm, Node.js, Git e Windows em conhecimento compartilhado.</p></article>
-            <article><span>04</span><small>PRODUTO AUTORAL</small><h3>Ronas Desk</h3><p>O passo seguinte: reunir interface, arquitetura, API e dados em uma aplicação Full Stack pensada como produto real.</p></article>
+            <article><span>04</span><small>PRODUTO EM PRODUÇÃO</small><h3>Ronas Desk v1.0</h3><p>19 sprints transformaram interface, API, dados, segurança, testes e infraestrutura em um produto demonstrável.</p></article>
           </div>
         </div>
       </section>
@@ -207,7 +207,7 @@ function App() {
         <div className="container"><SectionHead tag="OUTROS PROJETOS" title="Aprendizado transformado em entregas." />
           <div className="other-grid">
             <article className="reveal"><span>01 · DEBUGGING</span><h3>Laboratório ERESOLVE npm</h3><p>Conflito real de dependências reproduzido, investigado e documentado passo a passo.</p><div><b>Node.js</b><b>npm</b><b>Documentação</b></div><a href="https://github.com/ronaelmoura/laboratorio-erro-eresolve-npm" target="_blank" rel="noreferrer">Ver código <Arrow /></a></article>
-            <article className="reveal"><span>02 · PRODUTO DIGITAL</span><h3>Ronas Tech Site</h3><p>Site institucional para apresentar serviços de desenvolvimento, sistemas web e soluções digitais.</p><div><b>React</b><b>Vite</b><b>CSS</b></div><a href="https://ronas-tech-site.vercel.app/" target="_blank" rel="noreferrer">Visitar projeto <Arrow /></a></article>
+            <article className="reveal"><span>02 · PRODUTO DIGITAL</span><h3>Ronas Tech Site</h3><p>Site institucional publicado para apresentar serviços, projetos reais e soluções digitais para negócios.</p><div><b>React</b><b>Vite</b><b>Vercel</b></div><a href="https://www.ronastech.com.br/" target="_blank" rel="noreferrer">Visitar projeto <Arrow /></a></article>
             <article className="reveal"><span>03 · PORTFÓLIO</span><h3>Portfólio Ronas Tech</h3><p>Esta experiência: identidade profissional, performance e narrativa construídas em React.</p><div><b>React</b><b>UX/UI</b><b>SEO</b></div><a href="https://github.com/ronaelmoura/ronaelmoura.github.io" target="_blank" rel="noreferrer">Ver repositório <Arrow /></a></article>
           </div>
         </div>
