@@ -140,7 +140,29 @@ function IncidentSimulator() {
   </section>
 }
 
-function Header() {
+function RecruiterMode({ onClose }) {
+  const [step, setStep] = useState(0)
+  const slides = [
+    ['01 / QUEM É', 'Ronael Moura', 'Desenvolvedor Full Stack que transforma problemas operacionais em software web pronto para uso.', 'React · Node.js · Express · MySQL'],
+    ['02 / PROVA', 'Ronas Desk v1.0', 'Produto de Help Desk em produção, com clientes, chamados, SLA, auditoria, anexos e Portal do Cliente.', '19 sprints · 122 testes · demo online'],
+    ['03 / ENGENHARIA', 'Da interface ao deploy', 'Constrói fluxo completo: experiência, API, regras de negócio, dados, segurança, testes e infraestrutura.', 'Docker · Render · Aiven TLS · Cloudinary'],
+    ['04 / PRÓXIMO PASSO', 'Vamos conversar?', 'Aberto a uma oportunidade para contribuir em um time que entrega produtos com impacto real.', 'GitHub · LinkedIn · E-mail'],
+  ]
+  const slide = slides[step]
+  return <div className="recruiter-mode" role="dialog" aria-modal="true" aria-label="Modo recrutador">
+    <div className="recruiter-mode-shell">
+      <div className="mode-bar"><span><i /> MODO RECRUTADOR / 60 SEGUNDOS</span><button onClick={onClose} type="button" aria-label="Fechar modo recrutador">Fechar ×</button></div>
+      <div className="mode-progress">{slides.map((_, index) => <i className={index <= step ? 'active' : ''} key={index} />)}</div>
+      <main className="mode-content"><small>{slide[0]}</small><h2>{slide[1]}</h2><p>{slide[2]}</p><strong>{slide[3]}</strong></main>
+      <div className="mode-actions">
+        <button type="button" onClick={() => setStep(value => Math.max(0, value - 1))} disabled={step === 0}>← Voltar</button>
+        {step < slides.length - 1 ? <button className="mode-next" type="button" onClick={() => setStep(value => value + 1)}>Próxima prova →</button> : <div><a href="https://github.com/ronaelmoura/ronas-desk" target="_blank" rel="noreferrer">Código ↗</a><a href="mailto:ronaelmoura240@gmail.com">E-mail ↗</a></div>}
+      </div>
+    </div>
+  </div>
+}
+
+function Header({ openRecruiterMode }) {
   const [open, setOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
   useEffect(() => {
@@ -154,7 +176,7 @@ function Header() {
       <nav className="nav-desktop" aria-label="Navegação principal">
         {links.map(([label, id]) => <a key={id} href={`#${id}`}>{label}</a>)}
       </nav>
-      <a className="nav-cta" href="#contato">Vamos conversar <Arrow /></a>
+      <button className="nav-cta recruiter-trigger" onClick={openRecruiterMode} type="button">Modo recrutador <Arrow /></button>
       <button className="menu-button" onClick={() => setOpen(!open)} aria-expanded={open} aria-label={open ? 'Fechar menu' : 'Abrir menu'}>
         <span /><span /><span />
       </button>
@@ -172,6 +194,7 @@ function SectionHead({ tag, title, text }) {
 }
 
 function App() {
+  const [recruiterMode, setRecruiterMode] = useState(false)
   useEffect(() => {
     const targets = document.querySelectorAll('.reveal')
     const observer = new IntersectionObserver(entries => entries.forEach(entry => {
@@ -184,7 +207,7 @@ function App() {
   return <>
     <a className="skip-link" href="#conteudo">Pular para o conteúdo</a>
     <div className="ambient" aria-hidden="true" />
-    <Header />
+    <Header openRecruiterMode={() => setRecruiterMode(true)} />
     <main id="conteudo">
       <section className="hero" id="inicio">
         <div className="hero-grid">
@@ -318,6 +341,7 @@ function App() {
       <section className="contact" id="contato"><div className="container"><div className="contact-card reveal"><p className="eyebrow"><span /> PRÓXIMO DESAFIO</p><h2>Vamos transformar uma ideia em <em>software real?</em></h2><p>Estou aberto a oportunidades como Desenvolvedor Full Stack, colaborações e projetos que gerem impacto.</p><div className="actions"><a className="button light" href="mailto:ronaelmoura240@gmail.com">Enviar um e-mail <Arrow /></a><a className="button outline" href="https://www.linkedin.com/in/ronael-moura" target="_blank" rel="noreferrer">Conectar no LinkedIn <Arrow /></a></div></div></div></section>
     </main>
     <footer><div className="container footer-grid"><a className="brand" href="#inicio"><span>RONAEL <strong>MOURA</strong></span></a><p>Software com foco, pratica e evolucao continua.</p><div><a href="https://github.com/ronaelmoura" target="_blank" rel="noreferrer">GitHub</a><a href="https://www.linkedin.com/in/ronael-moura" target="_blank" rel="noreferrer">LinkedIn</a><a href="#inicio">Topo</a></div><small>{new Date().getFullYear()} Ronael Moura. Todos os direitos reservados.</small></div></footer>
+    {recruiterMode && <RecruiterMode onClose={() => setRecruiterMode(false)} />}
   </>
 }
 
