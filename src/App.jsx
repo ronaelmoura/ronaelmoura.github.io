@@ -64,6 +64,22 @@ function EngineeringLab() {
   </section>
 }
 
+function RecruiterAI() {
+  const answers = {
+    'Segurança': 'No Ronas Desk, autenticação JWT, permissões por perfil, Helmet, rate limit no login e uma conta demo somente leitura protegem os fluxos principais.',
+    'Testes': 'O backend possui 122 testes automatizados. Eles validam regras, autenticação, rotas e cenários importantes antes do deploy.',
+    'Arquitetura': 'A aplicação separa interface React, API REST Express, regras de negócio, MySQL com TLS, anexos privados no Cloudinary e deploy com Docker.',
+    'Decisão difícil': 'Escolhi tratar a demo como ambiente somente leitura. Assim um recrutador consegue explorar o produto sem expor credenciais nem alterar dados.',
+  }
+  const [question, setQuestion] = useState('Segurança')
+  const [visible, setVisible] = useState(false)
+  useEffect(() => { setVisible(false); const id = setTimeout(() => setVisible(true), 130); return () => clearTimeout(id) }, [question])
+  return <section className="recruiter-ai reveal visible" id="ai">
+    <div className="ai-head"><div><p className="eyebrow"><span /> ASSISTENTE LOCAL / SEM API</p><h2>Pergunte ao <em>Ronas Desk.</em></h2><p>Um guia de avaliação técnica criado a partir das decisões reais do projeto.</p></div><span className="ai-online"><i /> ONLINE</span></div>
+    <div className="ai-console"><div className="ai-prompts">{Object.keys(answers).map(item => <button className={question === item ? 'active' : ''} key={item} type="button" onClick={() => setQuestion(item)}>{item}</button>)}</div><div className="ai-terminal"><small>recruiter@portfolio:~$ pergunta sobre {question.toLowerCase()}</small><p className={visible ? 'typed' : ''}>{answers[question]}</p><div><a href="https://github.com/ronaelmoura/ronas-desk" target="_blank" rel="noreferrer">Ver evidência no código ↗</a><a href="https://ronas-desk.onrender.com/" target="_blank" rel="noreferrer">Testar demonstração ↗</a></div></div></div>
+  </section>
+}
+
 function Header() {
   const [open, setOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
@@ -143,7 +159,7 @@ function App() {
         <a className="scroll-cue" href="#ronas-desk"><span /> Explore o projeto principal</a>
       </section>
 
-      <div className="container"><EngineeringLab /></div>
+      <div className="container"><EngineeringLab /><RecruiterAI /></div>
 
       <section className="project-hero" id="ronas-desk">
         <div className="container">
