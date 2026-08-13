@@ -165,6 +165,59 @@ function ArchitectureExplorer() {
   </section>
 }
 
+function DecisionJournal() {
+  const entries = [
+    {
+      id: 'demo',
+      tag: 'ACESSO À DEMONSTRAÇÃO',
+      title: 'Como deixar alguém explorar sem colocar o produto em risco?',
+      problem: 'Uma demo comum com credenciais expostas permitiria alterar ou apagar o cenário que apresenta o projeto.',
+      options: ['Exibir e-mail e senha de administrador', 'Criar uma interface falsa só para apresentação', 'Criar uma conta demo real, porém somente leitura'],
+      decision: 'Conta demo real e centralmente bloqueada para operações de escrita.',
+      result: 'Quem avalia o sistema percorre dados e fluxos reais sem alterar registros, anexos, comentários ou senhas.',
+      evidence: 'Demo somente leitura · rotas protegidas · validação no backend',
+    },
+    {
+      id: 'database',
+      tag: 'ENTREGA EM PRODUÇÃO',
+      title: 'Como publicar sem tornar a evolução do banco imprevisível?',
+      problem: 'Executar mudanças de banco automaticamente na inicialização pode criar falhas difíceis de rastrear durante um deploy.',
+      options: ['Rodar SQL manualmente e sem histórico', 'Executar migrations em todo deploy', 'Versionar migrations e executá-las em job controlado'],
+      decision: 'Migrations idempotentes e registradas, executadas como etapa planejada antes da publicação.',
+      result: 'A aplicação pode ser atualizada com segurança e o banco mantém um histórico verificável das mudanças.',
+      evidence: 'schema_migrations · scripts SQL · One-Off Job no Render',
+    },
+    {
+      id: 'files',
+      tag: 'ANEXOS PRIVADOS',
+      title: 'Como permitir anexos sem transformar documentos em links públicos?',
+      problem: 'Chamados podem conter PDFs e imagens que não deveriam estar acessíveis para qualquer pessoa com uma URL.',
+      options: ['Salvar arquivos no frontend', 'Usar links públicos permanentes', 'Armazenar ativos autenticados e gerar links temporários'],
+      decision: 'Cloudinary autenticado, metadados no MySQL e URL de download temporária após autorização.',
+      result: 'O arquivo não é entregue antes da sessão e da permissão serem verificadas pela API.',
+      evidence: 'Multer · Cloudinary · autorização de download',
+    },
+    {
+      id: 'quality',
+      tag: 'QUALIDADE',
+      title: 'Como evitar que uma melhoria quebre uma regra antiga?',
+      problem: 'Um produto com autenticação, chamados, históricos e indicadores acumula regras que não podem depender só de teste manual.',
+      options: ['Validar apenas no navegador', 'Testar só endpoints principais', 'Cobrir fluxos e regras críticas de forma automatizada'],
+      decision: 'Testes automatizados no backend integrados ao CI do GitHub Actions.',
+      result: 'O projeto chega a produção com 122 testes automatizados como rede de segurança para evolução contínua.',
+      evidence: '122 testes · lint · build · CI em push e pull request',
+    },
+  ]
+  const [open, setOpen] = useState(0)
+  return <section className="decision-journal reveal visible" aria-label="Diário de decisões do Ronas Desk">
+    <div className="journal-heading"><div><p className="eyebrow"><span /> DIÁRIO DE DECISÕES / RONAS DESK V1.0</p><h2>Software é feito de<br /><em>escolhas conscientes.</em></h2></div><p>Não mostro apenas o resultado final. Mostro o raciocínio, as alternativas e o impacto de cada decisão importante.</p></div>
+    <div className="journal-list">{entries.map((entry, index) => <article className={open === index ? 'open' : ''} key={entry.id}>
+      <button onClick={() => setOpen(open === index ? -1 : index)} type="button" aria-expanded={open === index}><span>{String(index + 1).padStart(2, '0')}</span><div><small>{entry.tag}</small><h3>{entry.title}</h3></div><i>{open === index ? '−' : '+'}</i></button>
+      <div className="journal-body"><div><small>O PROBLEMA</small><p>{entry.problem}</p></div><div><small>OPÇÕES CONSIDERADAS</small><ul>{entry.options.map((option, optionIndex) => <li className={optionIndex === 2 ? 'chosen' : ''} key={option}>{option}{optionIndex === 2 && <span>Escolhida</span>}</li>)}</ul></div><div className="journal-decision"><small>DECISÃO</small><p>{entry.decision}</p><strong>{entry.result}</strong><em>{entry.evidence}</em></div></div>
+    </article>)}</div>
+  </section>
+}
+
 function RecruiterMode({ onClose }) {
   const [step, setStep] = useState(0)
   const slides = [
@@ -267,7 +320,7 @@ function App() {
         <a className="scroll-cue" href="#ronas-desk"><span /> Explore o projeto principal</a>
       </section>
 
-      <div className="container"><EngineeringLab /><RecruiterAI /><IncidentSimulator /><ArchitectureExplorer /></div>
+      <div className="container"><EngineeringLab /><RecruiterAI /><IncidentSimulator /><ArchitectureExplorer /><DecisionJournal /></div>
 
       <section className="project-hero" id="ronas-desk">
         <div className="container">
