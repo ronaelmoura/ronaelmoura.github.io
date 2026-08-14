@@ -2,8 +2,8 @@
 const portrait = 'https://raw.githubusercontent.com/ronaelmoura/ronaelmoura.github.io/main/assets/ronael-moura.webp'
 
 const links = [
-  ['Ronas Desk', 'ronas-desk'], ['Sobre', 'sobre'], ['Stack', 'stack'],
-  ['Processo', 'processo'], ['Jornada', 'jornada'], ['Contato', 'contato'],
+  ['Ronas Desk', 'ronas-desk'], ['Projetos', 'projetos'], ['Sobre', 'sobre'],
+  ['Stack', 'stack'], ['Jornada', 'jornada'], ['Contato', 'contato'],
 ]
 
 const features = [
@@ -39,7 +39,77 @@ const process = [
   ['08', 'Melhoria contínua', 'Coleto aprendizados e evoluo produto, código e processo.'],
 ]
 
+const selectedProjects = [
+  {
+    number: '01', category: 'FRONT-END & DADOS', name: 'Nexo',
+    description: 'Dashboard financeiro pessoal com gráficos interativos, filtros por período, transações e uma experiência responsiva em modo claro e escuro.',
+    outcome: 'Transforma dados financeiros em decisões fáceis de visualizar.',
+    stack: ['React', 'TypeScript', 'Recharts'], visual: 'nexo',
+    demo: 'https://ronaelmoura.github.io/nexo-dashboard-financeiro/',
+    repository: 'https://github.com/ronaelmoura/nexo-dashboard-financeiro',
+  },
+  {
+    number: '02', category: 'BACK-END & REGRAS DE NEGÓCIO', name: 'StockFlow API',
+    description: 'API de estoque e pedidos com autenticação, controle de movimentações, validações de negócio e documentação pronta para integração.',
+    outcome: 'Mantém estoque e pedidos consistentes mesmo em fluxos concorrentes.',
+    stack: ['Node.js', 'Express', 'MySQL'], visual: 'stockflow',
+    repository: 'https://github.com/ronaelmoura/stockflow-api',
+  },
+  {
+    number: '03', category: 'SITE COMERCIAL & CONVERSÃO', name: 'ClimaZen',
+    description: 'Landing page para uma empresa fictícia de climatização, com simulador de economia, formulário interativo e navegação pensada para celular.',
+    outcome: 'Conecta apresentação de serviço, confiança e chamada para orçamento.',
+    stack: ['React', 'UX/UI', 'Responsivo'], visual: 'climazen',
+    demo: 'https://ronaelmoura.github.io/climazen-landing-page/',
+    repository: 'https://github.com/ronaelmoura/climazen-landing-page',
+  },
+  {
+    number: '04', category: 'NEGÓCIO DIGITAL', name: 'Ronas Tech',
+    description: 'Presença digital criada para apresentar sites, sistemas e automações sob medida, com jornada de contato objetiva e identidade própria.',
+    outcome: 'Traduz capacidade técnica em uma proposta clara para pequenos negócios.',
+    stack: ['React', 'Produto', 'SEO'], visual: 'ronastech',
+    demo: 'https://www.ronastech.com.br/',
+    repository: 'https://github.com/ronaelmoura/ronas-tech-site',
+  },
+]
+
 function Arrow() { return <span aria-hidden="true">↗</span> }
+
+function ProjectVisual({ type, name }) {
+  if (type === 'nexo') return <div className="project-visual visual-nexo" aria-label="Prévia ilustrativa do dashboard Nexo">
+    <div className="visual-bar"><i /><i /><i /><span>NEXO / VISÃO GERAL</span></div>
+    <div className="nexo-layout"><aside><b>N</b><i /><i /><i /></aside><div><small>SALDO DISPONÍVEL</small><strong>R$ 12.480</strong><div className="nexo-chart">{[36, 52, 43, 70, 58, 84, 67].map((height, index) => <i key={index} style={{ height: `${height}%` }} />)}</div></div></div>
+  </div>
+  if (type === 'stockflow') return <div className="project-visual visual-stockflow" aria-label="Prévia ilustrativa da API StockFlow">
+    <div className="visual-bar"><i /><i /><i /><span>STOCKFLOW / API STATUS</span></div>
+    <div className="api-lines"><p><b>POST</b> /api/orders <span>201</span></p><p><b>PATCH</b> /api/stock/movements <span>200</span></p><p><b>GET</b> /api/inventory/alerts <span>200</span></p><small>● AUTHENTICATED · MYSQL CONNECTED</small></div>
+  </div>
+  if (type === 'climazen') return <div className="project-visual visual-climazen" aria-label="Prévia ilustrativa da landing page ClimaZen">
+    <div className="visual-bar"><i /><i /><i /><span>CLIMAZEN / ECONOMIA</span></div>
+    <div className="climazen-preview"><div><small>CONFORTO INTELIGENTE</small><strong>Clima ideal.<br />Consumo menor.</strong><span>Solicitar avaliação →</span></div><div className="climate-ring"><b>23°</b><small>EFICIENTE</small></div></div>
+  </div>
+  return <div className="project-visual visual-ronastech" aria-label={`Prévia ilustrativa do site ${name}`}>
+    <div className="visual-bar"><i /><i /><i /><span>RONAS TECH / SOLUÇÕES</span></div>
+    <div className="ronastech-preview"><span>RT</span><div><small>SITES · SISTEMAS · AUTOMAÇÕES</small><strong>Sua operação mais simples.<br />Sua empresa mais digital.</strong><i /></div></div>
+  </div>
+}
+
+function ProjectCard({ project }) {
+  return <article className={`selected-project reveal project-${project.visual}`}>
+    <ProjectVisual type={project.visual} name={project.name} />
+    <div className="selected-project-copy">
+      <span className="project-number">{project.number} · {project.category}</span>
+      <h3>{project.name}</h3>
+      <p>{project.description}</p>
+      <strong className="project-outcome">{project.outcome}</strong>
+      <div className="project-stack">{project.stack.map(item => <b key={item}>{item}</b>)}</div>
+      <div className="project-links">
+        {project.demo && <a href={project.demo} target="_blank" rel="noreferrer">Ver projeto online <Arrow /></a>}
+        <a href={project.repository} target="_blank" rel="noreferrer">Código e detalhes <Arrow /></a>
+      </div>
+    </div>
+  </article>
+}
 
 function EngineeringLab() {
   const [active, setActive] = useState(0)
@@ -420,7 +490,7 @@ function App() {
       <section className="section about" id="sobre">
         <div className="container about-grid">
           <div className="about-title reveal"><p className="eyebrow"><span /> SOBRE MIM</p><h2>Técnica para construir.<br /><em>Curiosidade para evoluir.</em></h2></div>
-          <div className="about-copy reveal"><p className="large">Sou Desenvolvedor Full Stack e transformo problemas operacionais em <strong>produtos web claros, seguros e prontos para uso.</strong></p><p>Minha experiência em suporte de TI me ensinou a ouvir o usuário, investigar causas e assumir responsabilidade pela solução. Hoje aplico esse raciocínio em interfaces, APIs, bancos de dados e deploy.</p><p>Com o <strong>Ronas Desk</strong>, levei uma ideia por 19 sprints até a versão 1.0 em produção. Também transformo esse conhecimento em soluções para pequenos negócios por meio da <a className="inline-link" href="https://www.ronastech.com.br/" target="_blank" rel="noreferrer">Ronas Tech <Arrow /></a>.</p>
+          <div className="about-copy reveal"><p className="large">Sou Desenvolvedor Full Stack e transformo problemas operacionais em <strong>produtos web claros, seguros e prontos para uso.</strong></p><p>Minha experiência em suporte de TI me ensinou a ouvir o usuário, investigar causas e assumir responsabilidade pela solução. Hoje aplico esse raciocínio em interfaces, APIs, bancos de dados e deploy.</p><p>Meu portfólio reúne diferentes tipos de entrega: um produto Full Stack em produção, dashboard de dados, API com regras de negócio e site orientado à conversão. Também aplico esse conhecimento em soluções para pequenos negócios por meio da <a className="inline-link" href="https://www.ronastech.com.br/" target="_blank" rel="noreferrer">Ronas Tech <Arrow /></a>.</p>
             <div className="about-links"><a href="https://www.linkedin.com/in/ronael-moura" target="_blank" rel="noreferrer">LinkedIn <Arrow /></a><a href="https://github.com/ronaelmoura" target="_blank" rel="noreferrer">GitHub <Arrow /></a></div>
           </div>
         </div>
@@ -459,13 +529,10 @@ function App() {
         </div>
       </section>
 
-      <section className="section other-projects">
-        <div className="container"><SectionHead tag="OUTROS PROJETOS" title="Aprendizado transformado em entregas." />
-          <div className="other-grid">
-            <article className="reveal"><span>01 · DEBUGGING</span><h3>Laboratório ERESOLVE npm</h3><p>Conflito real de dependências reproduzido, investigado e documentado passo a passo.</p><div><b>Node.js</b><b>npm</b><b>Documentação</b></div><a href="https://github.com/ronaelmoura/laboratorio-erro-eresolve-npm" target="_blank" rel="noreferrer">Ver código <Arrow /></a></article>
-            <article className="reveal featured-project-card"><a className="other-project-media" href="https://www.ronastech.com.br/" target="_blank" rel="noreferrer" aria-label="Abrir site da Ronas Tech"><img src="https://www.ronastech.com.br/og-ronas-tech.png" alt="Prévia do site Ronas Tech" loading="lazy" width="1200" height="630" /></a><span>02 · NEGÓCIO DIGITAL</span><h3>Ronas Tech</h3><p>Site comercial criado para apresentar sites, sistemas e automações sob medida para pequenos negócios de todo o Brasil.</p><div><b>React</b><b>Vite</b><b>Produto</b></div><a href="https://www.ronastech.com.br/" target="_blank" rel="noreferrer">Visitar site oficial <Arrow /></a></article>
-            <article className="reveal"><span>03 · PORTFÓLIO</span><h3>Ronael Moura</h3><p>Esta experiência: identidade profissional, performance e narrativa técnica construídas em React.</p><div><b>React</b><b>UX/UI</b><b>SEO</b></div><a href="https://github.com/ronaelmoura/ronaelmoura.github.io" target="_blank" rel="noreferrer">Ver repositório <Arrow /></a></article>
-          </div>
+      <section className="section selected-projects" id="projetos">
+        <div className="container"><SectionHead tag="PROJETOS SELECIONADOS" title="Quatro desafios. Quatro tipos de entrega." text="Cada projeto foi pensado para demonstrar uma competência diferente — interface, dados, back-end, produto e experiência do cliente." />
+          <div className="selected-projects-grid">{selectedProjects.map(project => <ProjectCard project={project} key={project.name} />)}</div>
+          <div className="project-lab-note reveal"><div><span>LABORATÓRIO TÉCNICO</span><strong>O processo também fica público.</strong><p>Documentei a investigação de um conflito ERESOLVE do npm para transformar um erro real em material útil para outros desenvolvedores.</p></div><a href="https://github.com/ronaelmoura/laboratorio-erro-eresolve-npm" target="_blank" rel="noreferrer">Abrir estudo de debugging <Arrow /></a></div>
         </div>
       </section>
 

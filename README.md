@@ -1,6 +1,6 @@
-# Portfólio — Ronas Tech
+# Portfólio — Ronael Moura
 
-Portfólio profissional de **Ronael Moura**, Desenvolvedor Full Stack e criador da Ronas Tech. A experiência destaca o **Ronas Desk**, um sistema Full Stack de gerenciamento de chamados técnicos.
+Portfólio profissional de **Ronael Moura**, Desenvolvedor Full Stack e criador da Ronas Tech. A experiência apresenta projetos autorais de front-end, back-end e produto, com o **Ronas Desk** como principal estudo de caso.
 
 ## Tecnologias
 
@@ -33,10 +33,11 @@ O `index.html` é a entrada de desenvolvimento do Vite. O comando de build gera 
 ## Conteúdo
 
 - Proposta de valor profissional
-- Ronas Desk, funcionalidades e roadmap
+- Ronas Desk, funcionalidades, arquitetura e decisões técnicas
+- Nexo, StockFlow API, ClimaZen e Ronas Tech
 - Tecnologias e processo de desenvolvimento
 - Jornada profissional e certificados
-- Outros projetos e canais de contato
+- Laboratório técnico e canais de contato
 
 ## Autor
 
