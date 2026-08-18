@@ -1,6 +1,7 @@
 ﻿import { useEffect, useState } from 'react'
 import { Aurora, CursorGlow, ScrollProgress, WeatherWidget } from './motion'
 import { useMagnetic, useTilt } from './hooks'
+import { useHeroIntro, useHeroParallax, usePopReveal, useScrollReveals, useSmoothScroll } from './scroll'
 const portrait = 'https://raw.githubusercontent.com/ronaelmoura/ronaelmoura.github.io/main/assets/ronael-moura.webp'
 
 const links = [
@@ -431,14 +432,11 @@ function App() {
   const deskCtaRef = useMagnetic(12)
   const contactLightRef = useMagnetic(14)
   const contactOutlineRef = useMagnetic(14)
-  useEffect(() => {
-    const targets = document.querySelectorAll('.reveal')
-    const observer = new IntersectionObserver(entries => entries.forEach(entry => {
-      if (entry.isIntersecting) { entry.target.classList.add('visible'); observer.unobserve(entry.target) }
-    }), { threshold: .1 })
-    targets.forEach(target => observer.observe(target))
-    return () => observer.disconnect()
-  }, [])
+  const heroArtRef = useHeroParallax()
+  const appWindowRef = usePopReveal()
+  useSmoothScroll()
+  useScrollReveals()
+  useHeroIntro()
 
   return <>
     <a className="skip-link" href="#conteudo">Pular para o conteúdo</a>
@@ -456,7 +454,7 @@ function App() {
               <WeatherWidget className="status-pill" />
             </div>
             <p className="eyebrow"><span /> DESENVOLVEDOR FULL STACK</p>
-            <h1>Eu transformo <em>problemas reais</em> em software que funciona.</h1>
+            <div className="hero-mask"><h1>Eu transformo <em>problemas reais</em> em software que funciona.</h1></div>
             <p className="hero-lead">Sou <strong>Ronael Moura</strong>. Construo aplicações completas com React, Node.js e uma visão prática de produto — da arquitetura ao deploy.</p>
             <HeroActions />
             <div className="proof">
@@ -465,7 +463,7 @@ function App() {
               <div><strong>v1.0 online</strong><span>Produto entregue</span></div>
             </div>
           </div>
-          <div className="hero-art">
+          <div ref={heroArtRef} className="hero-art">
             <HeroPortrait />
           </div>
         </div>
@@ -480,8 +478,8 @@ function App() {
             <div><p className="eyebrow"><span /> CASE PRINCIPAL · V1.0 EM PRODUÇÃO</p><h2>Ronas <em>Desk</em></h2></div>
             <p>Uma plataforma Full Stack de Help Desk que centraliza clientes, equipe, chamados, SLA e indicadores em uma operação segura e rastreável.</p>
           </div>
-          <div className="desk-showcase reveal">
-            <div className="app-window">
+          <div className="desk-showcase">
+            <div ref={appWindowRef} className="app-window">
               <div className="window-bar"><div><i /><i /><i /></div><span>app.ronasdesk.local/dashboard</span><small>● Seguro</small></div>
               <div className="app-layout">
                 <aside><div className="app-logo">R<span>D</span></div>{['▦', '◫', '◎', '▤', '⚙'].map((x,i)=><b className={i===0?'active':''} key={i}>{x}</b>)}</aside>
@@ -492,7 +490,7 @@ function App() {
                 </div>
               </div>
             </div>
-            <div className="showcase-copy">
+            <div className="showcase-copy reveal">
               <span className="version">ESTÁVEL · v1.0.0</span>
               <h3>Da ideia ao deploy.<br />Um produto completo.</h3>
               <p>Desenvolvi o Ronas Desk para demonstrar domínio do ciclo inteiro de software: experiência do usuário, API, regras de negócio, banco de dados, segurança, testes e produção.</p>
