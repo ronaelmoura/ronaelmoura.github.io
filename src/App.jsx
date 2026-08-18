@@ -115,29 +115,6 @@ function ProjectCard({ project, index }) {
   </article>
 }
 
-function EngineeringLab() {
-  const [active, setActive] = useState(0)
-  const [running, setRunning] = useState(true)
-  const stages = [
-    ['01', 'Problema', 'Entender o que realmente trava a operação.'],
-    ['02', 'Sistema', 'Desenhar dados, fluxo e responsabilidades.'],
-    ['03', 'Validação', 'Testar o caminho principal e os casos de erro.'],
-    ['04', 'Produção', 'Publicar, medir e evoluir com responsabilidade.'],
-  ]
-  return <section className="engineering-lab reveal visible" aria-label="Laboratório interativo de engenharia">
-    <div className={`lab-orbit ${running ? 'running' : ''}`} aria-hidden="true"><i /><i /><i /><i /><i /><i /><i /><i /></div>
-    <div className="lab-top">
-      <div><span className="lab-kicker"><i /> RONAEL.OS / BUILD MODE</span><h2>Não é uma animação.<br /><em>É meu jeito de construir.</em></h2></div>
-      <button onClick={() => setRunning(value => !value)} className="lab-toggle" type="button">{running ? 'Pausar sistema' : 'Rodar sistema'} <span>{running ? 'Ⅱ' : '▶'}</span></button>
-    </div>
-    <p className="lab-instruction">Interaja com as etapas. Cada uma revela como uma ideia vira software pronto para uso.</p>
-    <div className="lab-stages">
-      {stages.map(([number, title, text], index) => <button className={active === index ? 'active' : ''} onClick={() => setActive(index)} key={number} type="button"><span>{number}</span><b>{title}</b><p>{active === index ? text : 'Clique para explorar.'}</p><i>↗</i></button>)}
-    </div>
-    <div className="lab-status"><span><i /> {running ? 'SISTEMA ATIVO' : 'SISTEMA PAUSADO'}</span><p>O Ronas Desk é a prova concreta deste ciclo: da ideia à produção.</p></div>
-  </section>
-}
-
 function RecruiterAI() {
   const answers = {
     'Segurança': 'No Ronas Desk, autenticação JWT, permissões por perfil, Helmet, rate limit no login e uma conta demo somente leitura protegem os fluxos principais.',
@@ -335,7 +312,7 @@ function ProofLab() {
 
   return <section className="proof-lab reveal visible" id="laboratorio" aria-label="Laboratório de engenharia do Ronas Desk">
     <div className="proof-lab-heading">
-      <div><p className="eyebrow"><span /> RONAS DESK ENGINEERING LAB</p><h2>Escolha uma prova.<br /><em>Explore a engenharia.</em></h2></div>
+      <div><p className="eyebrow"><span /> RONAEL.OS / ENGINEERING LAB</p><h2>Não é uma animação.<br /><em>É meu jeito de construir.</em></h2></div>
       <p>Cinco experiências interativas em um único laboratório. Sem uma página interminável e sem esconder o raciocínio por trás do produto.</p>
     </div>
     <div className="proof-lab-nav" role="tablist" aria-label="Experiências técnicas">
@@ -389,6 +366,7 @@ function Header({ openRecruiterMode }) {
     </div>
     <nav className={`nav-mobile ${open ? 'open' : ''}`} aria-label="Navegação móvel">
       {links.map(([label, id]) => <a key={id} onClick={() => setOpen(false)} href={`#${id}`}>{label}</a>)}
+      <button className="mobile-recruiter-trigger" type="button" onClick={() => { setOpen(false); openRecruiterMode() }}>Modo recrutador <Arrow /></button>
     </nav>
   </header>
 }
@@ -470,8 +448,6 @@ function App() {
         <a className="scroll-cue" href="#ronas-desk"><span /> Explore o projeto principal</a>
       </section>
 
-      <div className="container"><EngineeringLab /><ProofLab /></div>
-
       <section className="project-hero" id="ronas-desk">
         <div className="container">
           <div className="project-heading reveal">
@@ -500,6 +476,8 @@ function App() {
           </div>
         </div>
       </section>
+
+      <div className="container"><ProofLab /></div>
 
       <section className="section features">
         <div className="container"><SectionHead tag="PRODUTO EM FUNCIONAMENTO" title="Uma operação de suporte completa. Não apenas telas." text="Cada módulo se conecta às regras do negócio, preserva o histórico e respeita as permissões do usuário." />
