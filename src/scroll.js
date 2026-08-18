@@ -46,8 +46,9 @@ export function useScrollReveals() {
 export function useHeroIntro() {
   useLayoutEffect(() => {
     if (prefersReduced()) return undefined
+    let failSafe
     const ctx = gsap.context(() => {
-      gsap.timeline({ defaults: { ease: 'power3.out', duration: 0.9 } })
+      const tl = gsap.timeline({ defaults: { ease: 'power3.out', duration: 0.9 } })
         .from('.hero-pills', { y: 24, autoAlpha: 0 })
         .from('.hero-copy .eyebrow', { y: 20, autoAlpha: 0 }, '-=0.6')
         .from('.hero-mask h1', { yPercent: 115 }, '-=0.5')
@@ -55,8 +56,12 @@ export function useHeroIntro() {
         .from('.hero-copy .actions', { y: 20, autoAlpha: 0 }, '-=0.5')
         .from('.hero-copy .proof > div', { y: 16, autoAlpha: 0, stagger: 0.08 }, '-=0.45')
         .from('.hero-art', { autoAlpha: 0, scale: 0.94, y: 30, duration: 1.1 }, '-=0.9')
+      // If the ticker ever stalls (throttled tab, blocked script, slow
+      // device) this jumps straight to the finished state so the hero
+      // never gets stuck invisible.
+      failSafe = setTimeout(() => tl.progress(1), 3000)
     })
-    return () => ctx.revert()
+    return () => { clearTimeout(failSafe); ctx.revert() }
   }, [])
 }
 
