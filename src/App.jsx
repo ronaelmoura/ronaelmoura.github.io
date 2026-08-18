@@ -1,4 +1,6 @@
 ﻿import { useEffect, useState } from 'react'
+import { Aurora, CursorGlow, ScrollProgress, WeatherWidget } from './motion'
+import { useMagnetic, useTilt } from './hooks'
 const portrait = 'https://raw.githubusercontent.com/ronaelmoura/ronaelmoura.github.io/main/assets/ronael-moura.webp'
 
 const links = [
@@ -94,8 +96,9 @@ function ProjectVisual({ type, name }) {
   </div>
 }
 
-function ProjectCard({ project }) {
-  return <article className={`selected-project reveal project-${project.visual}`}>
+function ProjectCard({ project, index }) {
+  const tiltRef = useTilt(4)
+  return <article ref={tiltRef} className={`selected-project reveal tilt project-${project.visual}`} style={{ '--stagger': index }}>
     <ProjectVisual type={project.visual} name={project.name} />
     <div className="selected-project-copy">
       <span className="project-number">{project.number} · {project.category}</span>
@@ -366,6 +369,7 @@ function RecruiterMode({ onClose }) {
 function Header({ openRecruiterMode }) {
   const [open, setOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
+  const triggerRef = useMagnetic(10)
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20)
     onScroll(); window.addEventListener('scroll', onScroll, { passive: true })
@@ -377,7 +381,7 @@ function Header({ openRecruiterMode }) {
       <nav className="nav-desktop" aria-label="Navegação principal">
         {links.map(([label, id]) => <a key={id} href={`#${id}`}>{label}</a>)}
       </nav>
-      <button className="nav-cta recruiter-trigger" onClick={openRecruiterMode} type="button">Modo recrutador <Arrow /></button>
+      <button ref={triggerRef} className="nav-cta recruiter-trigger" onClick={openRecruiterMode} type="button">Modo recrutador <Arrow /></button>
       <button className="menu-button" onClick={() => setOpen(!open)} aria-expanded={open} aria-label={open ? 'Fechar menu' : 'Abrir menu'}>
         <span /><span /><span />
       </button>
@@ -394,8 +398,39 @@ function SectionHead({ tag, title, text }) {
   </div>
 }
 
+function TiltCard({ as: Tag = 'div', className = '', max = 6, children, ...rest }) {
+  const ref = useTilt(max)
+  return <Tag ref={ref} className={`tilt ${className}`} {...rest}>{children}</Tag>
+}
+
+function HeroActions() {
+  const primaryRef = useMagnetic(14)
+  const secondaryRef = useMagnetic(14)
+  return <div className="actions">
+    <a ref={primaryRef} className="button primary" href="#ronas-desk">Conhecer o Ronas Desk <Arrow /></a>
+    <a ref={secondaryRef} className="button secondary" href="https://github.com/ronaelmoura" target="_blank" rel="noreferrer">Ver GitHub <Arrow /></a>
+  </div>
+}
+
+function HeroPortrait() {
+  const tiltRef = useTilt(7)
+  return <div ref={tiltRef} className="portrait-frame tilt">
+    <span className="frame-label">RONAEL MOURA</span>
+    <img src={portrait} alt="Ronael Moura, Desenvolvedor Full Stack" width="1100" height="1100" />
+    <div className="code-card"><i /> <span>LIVE IN PRODUCTION</span><strong>Ronas Desk v1.0</strong></div>
+    <div className="stack-float"><span>REACT</span><b>+</b><span>NODE.JS</span></div>
+    <div className="signal-console" aria-label="Fluxo de construcao de software">
+      <div><span className="signal-live" /> SISTEMA DE CONSTRUCAO</div>
+      <p><b>01</b> entender <i>-&gt;</i> <b>02</b> construir <i>-&gt;</i> <b>03</b> validar <i>-&gt;</i> <b>04</b> publicar</p>
+    </div>
+  </div>
+}
+
 function App() {
   const [recruiterMode, setRecruiterMode] = useState(false)
+  const deskCtaRef = useMagnetic(12)
+  const contactLightRef = useMagnetic(14)
+  const contactOutlineRef = useMagnetic(14)
   useEffect(() => {
     const targets = document.querySelectorAll('.reveal')
     const observer = new IntersectionObserver(entries => entries.forEach(entry => {
@@ -408,36 +443,30 @@ function App() {
   return <>
     <a className="skip-link" href="#conteudo">Pular para o conteúdo</a>
     <div className="ambient" aria-hidden="true" />
+    <Aurora />
+    <CursorGlow />
+    <ScrollProgress />
     <Header openRecruiterMode={() => setRecruiterMode(true)} />
     <main id="conteudo">
       <section className="hero" id="inicio">
         <div className="hero-grid">
-          <div className="hero-copy reveal visible">
-            <div className="status-pill"><i /> Disponível para oportunidades</div>
+          <div className="hero-copy">
+            <div className="hero-pills">
+              <div className="status-pill"><i /> Disponível para oportunidades</div>
+              <WeatherWidget className="status-pill" />
+            </div>
             <p className="eyebrow"><span /> DESENVOLVEDOR FULL STACK</p>
             <h1>Eu transformo <em>problemas reais</em> em software que funciona.</h1>
             <p className="hero-lead">Sou <strong>Ronael Moura</strong>. Construo aplicações completas com React, Node.js e uma visão prática de produto — da arquitetura ao deploy.</p>
-            <div className="actions">
-              <a className="button primary" href="#ronas-desk">Conhecer o Ronas Desk <Arrow /></a>
-              <a className="button secondary" href="https://github.com/ronaelmoura" target="_blank" rel="noreferrer">Ver GitHub <Arrow /></a>
-            </div>
+            <HeroActions />
             <div className="proof">
               <div><strong>670h</strong><span>Formação Full Stack</span></div>
               <div><strong>122 testes</strong><span>Backend validado</span></div>
               <div><strong>v1.0 online</strong><span>Produto entregue</span></div>
             </div>
           </div>
-          <div className="hero-art reveal visible">
-            <div className="portrait-frame">
-              <span className="frame-label">RONAEL MOURA</span>
-              <img src={portrait} alt="Ronael Moura, Desenvolvedor Full Stack" width="1100" height="1100" />
-              <div className="code-card"><i /> <span>LIVE IN PRODUCTION</span><strong>Ronas Desk v1.0</strong></div>
-              <div className="stack-float"><span>REACT</span><b>+</b><span>NODE.JS</span></div>
-              <div className="signal-console" aria-label="Fluxo de construcao de software">
-                <div><span className="signal-live" /> SISTEMA DE CONSTRUCAO</div>
-                <p><b>01</b> entender <i>-&gt;</i> <b>02</b> construir <i>-&gt;</i> <b>03</b> validar <i>-&gt;</i> <b>04</b> publicar</p>
-              </div>
-            </div>
+          <div className="hero-art">
+            <HeroPortrait />
           </div>
         </div>
         <a className="scroll-cue" href="#ronas-desk"><span /> Explore o projeto principal</a>
@@ -468,7 +497,7 @@ function App() {
               <h3>Da ideia ao deploy.<br />Um produto completo.</h3>
               <p>Desenvolvi o Ronas Desk para demonstrar domínio do ciclo inteiro de software: experiência do usuário, API, regras de negócio, banco de dados, segurança, testes e produção.</p>
               <ul><li>19 sprints concluídas e fluxos validados</li><li>122 testes automatizados aprovados no backend</li><li>MySQL com TLS e migrações versionadas</li><li>Docker, Nginx, Render, Aiven e Cloudinary</li></ul>
-              <div className="project-actions"><a className="button primary" href="https://ronas-desk.onrender.com/" target="_blank" rel="noreferrer">Testar demonstração <Arrow /></a><a className="text-link" href="https://github.com/ronaelmoura/ronas-desk" target="_blank" rel="noreferrer">Ver código <Arrow /></a></div>
+              <div className="project-actions"><a ref={deskCtaRef} className="button primary" href="https://ronas-desk.onrender.com/" target="_blank" rel="noreferrer">Testar demonstração <Arrow /></a><a className="text-link" href="https://github.com/ronaelmoura/ronas-desk" target="_blank" rel="noreferrer">Ver código <Arrow /></a></div>
             </div>
           </div>
         </div>
@@ -476,7 +505,7 @@ function App() {
 
       <section className="section features">
         <div className="container"><SectionHead tag="PRODUTO EM FUNCIONAMENTO" title="Uma operação de suporte completa. Não apenas telas." text="Cada módulo se conecta às regras do negócio, preserva o histórico e respeita as permissões do usuário." />
-          <div className="feature-grid">{features.map((item, index) => <article className="feature-card reveal" key={item.title}><div><span>{item.icon}</span><i>0{index+1}</i></div><h3>{item.title}</h3><p>{item.text}</p></article>)}</div>
+          <div className="feature-grid">{features.map((item, index) => <TiltCard as="article" max={5} className="feature-card reveal" style={{ '--stagger': index }} key={item.title}><div><span>{item.icon}</span><i>0{index+1}</i></div><h3>{item.title}</h3><p>{item.text}</p></TiltCard>)}</div>
         </div>
       </section>
 
@@ -498,13 +527,13 @@ function App() {
 
       <section className="section stack" id="stack">
         <div className="container"><SectionHead tag="TECNOLOGIAS" title="Uma stack moderna para produtos completos." text="Ferramentas escolhidas para criar soluções úteis, legíveis e prontas para evoluir." />
-          <div className="tech-grid">{techGroups.map(group => <article className="tech-card reveal" key={group.title}><div className="tech-icon">{group.icon}</div><small>{group.eyebrow}</small><h3>{group.title}</h3><p>{group.text}</p><div>{group.items.map(x=><span key={x}>{x}</span>)}</div></article>)}</div>
+          <div className="tech-grid">{techGroups.map((group, index) => <TiltCard as="article" max={5} className="tech-card reveal" style={{ '--stagger': index }} key={group.title}><div className="tech-icon">{group.icon}</div><small>{group.eyebrow}</small><h3>{group.title}</h3><p>{group.text}</p><div>{group.items.map(x=><span key={x}>{x}</span>)}</div></TiltCard>)}</div>
         </div>
       </section>
 
       <section className="section process-section" id="processo">
         <div className="container"><SectionHead tag="COMO EU DESENVOLVO SOFTWARE" title="Processo claro. Decisões conscientes. Evolução contínua." />
-          <div className="process-grid">{process.map(([n,title,text])=><article className="process-card reveal" key={n}><span>{n}</span><div><h3>{title}</h3><p>{text}</p></div></article>)}</div>
+          <div className="process-grid">{process.map(([n,title,text],index)=><article className="process-card reveal" style={{ '--stagger': index }} key={n}><span>{n}</span><div><h3>{title}</h3><p>{text}</p></div></article>)}</div>
         </div>
       </section>
 
@@ -512,10 +541,10 @@ function App() {
         <div className="container"><SectionHead tag="MINHA JORNADA" title="Da curiosidade ao desenvolvimento de produtos reais." text="Uma trajetória construída entre formação, suporte, prática constante e compartilhamento de conhecimento." />
           <div className="journey-grid reveal">
             <div className="journey-line" />
-            <article><span>01</span><small>BASE TÉCNICA</small><h3>Suporte em TI</h3><p>Manutenção de computadores, atendimento a usuários e solução de problemas: a base para entender tecnologia pela perspectiva de quem usa.</p></article>
-            <article><span>02</span><small>FORMAÇÃO</small><h3>Full Stack no SENAI</h3><p>670 horas de formação, conceito final APTO e fundamentos sólidos de front-end, back-end, APIs, banco de dados, testes e versionamento.</p></article>
-            <article><span>03</span><small>CONSTRUÇÃO PÚBLICA</small><h3>Portfólio e GitHub</h3><p>Projetos no GitHub, portfólio e tutoriais que transformam desafios de npm, Node.js, Git e Windows em conhecimento compartilhado.</p></article>
-            <article><span>04</span><small>PRODUTO EM PRODUÇÃO</small><h3>Ronas Desk v1.0</h3><p>19 sprints transformaram interface, API, dados, segurança, testes e infraestrutura em um produto demonstrável.</p></article>
+            <article style={{ '--stagger': 0 }}><span>01</span><small>BASE TÉCNICA</small><h3>Suporte em TI</h3><p>Manutenção de computadores, atendimento a usuários e solução de problemas: a base para entender tecnologia pela perspectiva de quem usa.</p></article>
+            <article style={{ '--stagger': 1 }}><span>02</span><small>FORMAÇÃO</small><h3>Full Stack no SENAI</h3><p>670 horas de formação, conceito final APTO e fundamentos sólidos de front-end, back-end, APIs, banco de dados, testes e versionamento.</p></article>
+            <article style={{ '--stagger': 2 }}><span>03</span><small>CONSTRUÇÃO PÚBLICA</small><h3>Portfólio e GitHub</h3><p>Projetos no GitHub, portfólio e tutoriais que transformam desafios de npm, Node.js, Git e Windows em conhecimento compartilhado.</p></article>
+            <article style={{ '--stagger': 3 }}><span>04</span><small>PRODUTO EM PRODUÇÃO</small><h3>Ronas Desk v1.0</h3><p>19 sprints transformaram interface, API, dados, segurança, testes e infraestrutura em um produto demonstrável.</p></article>
           </div>
         </div>
       </section>
@@ -531,12 +560,12 @@ function App() {
 
       <section className="section selected-projects" id="projetos">
         <div className="container"><SectionHead tag="PROJETOS SELECIONADOS" title="Quatro desafios. Quatro tipos de entrega." text="Cada projeto foi pensado para demonstrar uma competência diferente — interface, dados, back-end, produto e experiência do cliente." />
-          <div className="selected-projects-grid">{selectedProjects.map(project => <ProjectCard project={project} key={project.name} />)}</div>
+          <div className="selected-projects-grid">{selectedProjects.map((project, index) => <ProjectCard project={project} index={index} key={project.name} />)}</div>
           <div className="project-lab-note reveal"><div><span>LABORATÓRIO TÉCNICO</span><strong>O processo também fica público.</strong><p>Documentei a investigação de um conflito ERESOLVE do npm para transformar um erro real em material útil para outros desenvolvedores.</p></div><a href="https://github.com/ronaelmoura/laboratorio-erro-eresolve-npm" target="_blank" rel="noreferrer">Abrir estudo de debugging <Arrow /></a></div>
         </div>
       </section>
 
-      <section className="contact" id="contato"><div className="container"><div className="contact-card reveal"><p className="eyebrow"><span /> PRÓXIMO DESAFIO</p><h2>Vamos transformar uma ideia em <em>software real?</em></h2><p>Estou aberto a oportunidades como Desenvolvedor Full Stack, colaborações e projetos que gerem impacto.</p><div className="actions"><a className="button light" href="mailto:ronaelmoura240@gmail.com">Enviar um e-mail <Arrow /></a><a className="button outline" href="https://www.linkedin.com/in/ronael-moura" target="_blank" rel="noreferrer">Conectar no LinkedIn <Arrow /></a></div></div></div></section>
+      <section className="contact" id="contato"><div className="container"><div className="contact-card reveal"><p className="eyebrow"><span /> PRÓXIMO DESAFIO</p><h2>Vamos transformar uma ideia em <em>software real?</em></h2><p>Estou aberto a oportunidades como Desenvolvedor Full Stack, colaborações e projetos que gerem impacto.</p><div className="actions"><a ref={contactLightRef} className="button light" href="mailto:ronaelmoura240@gmail.com">Enviar um e-mail <Arrow /></a><a ref={contactOutlineRef} className="button outline" href="https://www.linkedin.com/in/ronael-moura" target="_blank" rel="noreferrer">Conectar no LinkedIn <Arrow /></a></div></div></div></section>
     </main>
     <footer><div className="container footer-grid"><a className="brand" href="#inicio"><span>RONAEL <strong>MOURA</strong></span></a><p>Software com foco, pratica e evolucao continua.</p><div><a href="https://github.com/ronaelmoura" target="_blank" rel="noreferrer">GitHub</a><a href="https://www.linkedin.com/in/ronael-moura" target="_blank" rel="noreferrer">LinkedIn</a><a href="#inicio">Topo</a></div><small>{new Date().getFullYear()} Ronael Moura. Todos os direitos reservados.</small></div></footer>
     {recruiterMode && <RecruiterMode onClose={() => setRecruiterMode(false)} />}
