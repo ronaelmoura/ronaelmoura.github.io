@@ -57,6 +57,7 @@
 .selected-project h3{font-size:1.55rem;line-height:1.1;letter-spacing:-.04em;margin:14px 0 10px}
 .selected-project-copy>p{color:var(--muted);font-size:.76rem;min-height:76px}
 .project-outcome{display:block;margin:17px 0;padding-left:12px;border-left:2px solid var(--project-accent);color:#cbd8e5;font-size:.68rem;line-height:1.55}
+.project-problem b{color:var(--project-accent);font-weight:800}
 .project-stack{display:flex;flex-wrap:wrap;gap:6px;margin:20px 0}
 .project-stack b{font:400 .54rem var(--mono);padding:5px 7px;border:1px solid var(--line);border-radius:5px;color:#95a6b8}
 .project-links{display:flex;gap:20px;flex-wrap:wrap;padding-top:17px;border-top:1px solid var(--line)}

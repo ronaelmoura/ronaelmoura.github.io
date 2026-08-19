@@ -45,6 +45,7 @@ const process = [
 const selectedProjects = [
   {
     number: '01', category: 'FRONT-END & DADOS', name: 'Nexo',
+    problem: 'Dados financeiros espalhados em extratos e planilhas dificultam enxergar para onde o dinheiro está indo.',
     description: 'Dashboard financeiro pessoal com gráficos interativos, filtros por período, transações e uma experiência responsiva em modo claro e escuro.',
     outcome: 'Transforma dados financeiros em decisões fáceis de visualizar.',
     stack: ['React', 'TypeScript', 'Recharts'], visual: 'nexo',
@@ -53,6 +54,7 @@ const selectedProjects = [
   },
   {
     number: '02', category: 'BACK-END & REGRAS DE NEGÓCIO', name: 'StockFlow API',
+    problem: 'Estoque e pedidos que não se comunicam geram venda de produto que já acabou e números divergentes entre setores.',
     description: 'API de estoque e pedidos com autenticação, controle de movimentações, validações de negócio e documentação pronta para integração.',
     outcome: 'Mantém estoque e pedidos consistentes mesmo em fluxos concorrentes.',
     stack: ['Node.js', 'Express', 'MySQL'], visual: 'stockflow',
@@ -60,6 +62,7 @@ const selectedProjects = [
   },
   {
     number: '03', category: 'SITE COMERCIAL & CONVERSÃO', name: 'ClimaZen',
+    problem: 'Visitante chega no site, não entende o valor do serviço de climatização e sai sem pedir orçamento.',
     description: 'Landing page para uma empresa fictícia de climatização, com simulador de economia, formulário interativo e navegação pensada para celular.',
     outcome: 'Conecta apresentação de serviço, confiança e chamada para orçamento.',
     stack: ['React', 'UX/UI', 'Responsivo'], visual: 'climazen',
@@ -104,6 +107,7 @@ function ProjectCard({ project, index }) {
     <div className="selected-project-copy">
       <span className="project-number">{project.number} · {project.category}</span>
       <h3>{project.name}</h3>
+      {project.problem && <p className="project-problem"><b>O problema:</b> {project.problem}</p>}
       <p>{project.description}</p>
       <strong className="project-outcome">{project.outcome}</strong>
       <div className="project-stack">{project.stack.map(item => <b key={item}>{item}</b>)}</div>
@@ -388,6 +392,7 @@ function HeroActions() {
   return <div className="actions">
     <a ref={primaryRef} className="button primary" href="#ronas-desk">Conhecer o Ronas Desk <Arrow /></a>
     <a ref={secondaryRef} className="button secondary" href="https://github.com/ronaelmoura" target="_blank" rel="noreferrer">Ver GitHub <Arrow /></a>
+    <a className="text-link" href="/assets/curriculo-ronael-moura.pdf" target="_blank" rel="noreferrer">Baixar Currículo <Arrow /></a>
   </div>
 }
 
@@ -496,7 +501,7 @@ function App() {
         <div className="container about-grid">
           <div className="about-title reveal"><p className="eyebrow"><span /> SOBRE MIM</p><h2>Técnica para construir.<br /><em>Curiosidade para evoluir.</em></h2></div>
           <div className="about-copy reveal"><p className="large">Sou Desenvolvedor Full Stack e transformo problemas operacionais em <strong>produtos web claros, seguros e prontos para uso.</strong></p><p>Minha experiência em suporte de TI me ensinou a ouvir o usuário, investigar causas e assumir responsabilidade pela solução. Hoje aplico esse raciocínio em interfaces, APIs, bancos de dados e deploy.</p><p>Meu portfólio reúne diferentes tipos de entrega: um produto Full Stack em produção, dashboard de dados, API com regras de negócio e site orientado à conversão. Também aplico esse conhecimento em soluções para pequenos negócios por meio da <a className="inline-link" href="https://www.ronastech.com.br/" target="_blank" rel="noreferrer">Ronas Tech <Arrow /></a>.</p>
-            <div className="about-links"><a href="https://www.linkedin.com/in/ronael-moura" target="_blank" rel="noreferrer">LinkedIn <Arrow /></a><a href="https://github.com/ronaelmoura" target="_blank" rel="noreferrer">GitHub <Arrow /></a><a href="/assets/curriculo-ronael-moura.pdf" target="_blank" rel="noreferrer">Baixar Currículo <Arrow /></a></div>
+            <div className="about-links"><a href="https://www.linkedin.com/in/ronael-moura" target="_blank" rel="noreferrer">LinkedIn <Arrow /></a><a href="https://github.com/ronaelmoura" target="_blank" rel="noreferrer">GitHub <Arrow /></a></div>
           </div>
         </div>
       </section>
