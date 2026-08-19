@@ -496,7 +496,7 @@ function App() {
         <div className="container about-grid">
           <div className="about-title reveal"><p className="eyebrow"><span /> SOBRE MIM</p><h2>Técnica para construir.<br /><em>Curiosidade para evoluir.</em></h2></div>
           <div className="about-copy reveal"><p className="large">Sou Desenvolvedor Full Stack e transformo problemas operacionais em <strong>produtos web claros, seguros e prontos para uso.</strong></p><p>Minha experiência em suporte de TI me ensinou a ouvir o usuário, investigar causas e assumir responsabilidade pela solução. Hoje aplico esse raciocínio em interfaces, APIs, bancos de dados e deploy.</p><p>Meu portfólio reúne diferentes tipos de entrega: um produto Full Stack em produção, dashboard de dados, API com regras de negócio e site orientado à conversão. Também aplico esse conhecimento em soluções para pequenos negócios por meio da <a className="inline-link" href="https://www.ronastech.com.br/" target="_blank" rel="noreferrer">Ronas Tech <Arrow /></a>.</p>
-            <div className="about-links"><a href="https://www.linkedin.com/in/ronael-moura" target="_blank" rel="noreferrer">LinkedIn <Arrow /></a><a href="https://github.com/ronaelmoura" target="_blank" rel="noreferrer">GitHub <Arrow /></a></div>
+            <div className="about-links"><a href="https://www.linkedin.com/in/ronael-moura" target="_blank" rel="noreferrer">LinkedIn <Arrow /></a><a href="https://github.com/ronaelmoura" target="_blank" rel="noreferrer">GitHub <Arrow /></a><a href="/assets/curriculo-ronael-moura.pdf" target="_blank" rel="noreferrer">Baixar Currículo <Arrow /></a></div>
           </div>
         </div>
       </section>
