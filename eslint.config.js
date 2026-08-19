@@ -10,10 +10,19 @@ export default [
   reactRefresh.configs.vite,
   {
     files: ['**/*.{js,jsx}'],
+    ignores: ['scripts/**'],
     languageOptions: {
       ecmaVersion: 2020,
       globals: globals.browser,
       parserOptions: { ecmaVersion: 'latest', ecmaFeatures: { jsx: true }, sourceType: 'module' },
+    },
+  },
+  {
+    files: ['scripts/**/*.{js,mjs}'],
+    languageOptions: {
+      ecmaVersion: 2020,
+      globals: globals.node,
+      parserOptions: { ecmaVersion: 'latest', sourceType: 'module' },
     },
   },
 ]
