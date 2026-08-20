@@ -156,3 +156,11 @@ body.has-custom-cursor,body.has-custom-cursor *{cursor:none}
   #projetos small{font-size:.58rem}
   .cert-side small{font-size:.58rem}
 }
+
+/* O bloco de provas do hero tinha tres numeros; com dois, a grade fixa de
+   tres colunas deixava um vao a direita. */
+.proof{grid-template-columns:repeat(2,max-content);gap:44px}
+@media(max-width:650px){
+  .proof{grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
+  .proof div:last-child{grid-column:auto}
+}

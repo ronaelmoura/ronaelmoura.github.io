@@ -441,7 +441,6 @@ function App() {
             <p className="hero-lead">Sou <strong>Ronael Moura</strong>. Construo aplicações completas com React, Node.js e uma visão prática de produto — da arquitetura ao deploy.</p>
             <HeroActions />
             <div className="proof">
-              <div><strong>670h</strong><span>Formação Full Stack</span></div>
               <div><strong>122 testes</strong><span>Backend validado</span></div>
               <div><strong>v1.0 online</strong><span>Produto entregue</span></div>
             </div>
