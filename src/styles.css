@@ -106,3 +106,53 @@ body.has-custom-cursor,body.has-custom-cursor *{cursor:none}
 
 @media(hover:none),(pointer:coarse){.cursor-dot,.cursor-ring{display:none!important}body.has-custom-cursor,body.has-custom-cursor *{cursor:auto}}
 @media(prefers-reduced-motion:reduce){.aurora i{animation:none!important}.cursor-dot,.cursor-ring{display:none!important}body.has-custom-cursor,body.has-custom-cursor *{cursor:auto}.hero-copy,.hero-art{animation:none!important}}
+
+
+/* Acessibilidade e leitura */
+
+/* Foco de teclado. Antes so o skip-link tinha estilo de foco, entao quem
+   navega por Tab atravessava o site inteiro sem enxergar onde estava.
+   :focus-visible so aparece para teclado — o clique de mouse segue limpo. */
+:focus-visible{outline:3px solid var(--cyan);outline-offset:3px;border-radius:8px}
+.light:focus-visible{outline-color:var(--blue)}
+.skip-link:focus-visible{outline-offset:2px}
+
+/* Conforto de toque no mobile: 38px passa no minimo da WCAG, mas fica
+   apertado para o polegar. 44px e a recomendacao de plataforma. */
+@media(max-width:1000px){
+  .menu-button{width:44px;height:44px;padding:12px}
+  .nav-mobile a{padding:13px 12px}
+}
+
+/* O mockup do dashboard encolhe junto com a tela e chegava a 7,8px no
+   celular — ilegivel, ou seja, pixel gasto sem comunicar nada. Aqui ele
+   volta a um tamanho que da para ler. */
+@media(max-width:650px){
+  .window-bar{font-size:.66rem}
+  .dash-top small{font-size:.66rem}
+  .dash-top h3{font-size:.95rem}
+  .dash-top button{font-size:.66rem;padding:8px 11px}
+  .dash-stats span{font-size:.66rem}
+  .dash-stats strong{font-size:1.1rem}
+  .dash-stats i{font-size:.62rem}
+  .chart>span,.recent>span{font-size:.7rem}
+  .app-layout aside b{font-size:.8rem}
+  .text-link{padding:13px 0}
+}
+
+/* Textos dentro dos cards de preview chegavam a 6,4px no celular. Os rotulos
+   de 8-9px sao linguagem visual do site e ficam como estao; aqui so sobe o
+   que estava pequeno demais para ser lido. */
+@media(max-width:650px){
+  .signal-console p{font-size:.58rem}
+  .visual-bar span{font-size:.58rem}
+  .api-lines small{font-size:.58rem}
+  .api-lines p{font-size:.62rem}
+  .climate-ring small{font-size:.56rem}
+  .code-card span{font-size:.58rem}
+  .window-bar small{font-size:.6rem}
+}
+@media(max-width:650px){
+  #projetos small{font-size:.58rem}
+  .cert-side small{font-size:.58rem}
+}

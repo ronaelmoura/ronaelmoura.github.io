@@ -404,8 +404,8 @@ function HeroPortrait() {
     <div className="code-card"><i /> <span>LIVE IN PRODUCTION</span><strong>Ronas Desk v1.0</strong></div>
     <div className="stack-float"><span>REACT</span><b>+</b><span>NODE.JS</span></div>
     <div className="signal-console" aria-label="Fluxo de construcao de software">
-      <div><span className="signal-live" /> SISTEMA DE CONSTRUCAO</div>
-      <p><b>01</b> entender <i>-&gt;</i> <b>02</b> construir <i>-&gt;</i> <b>03</b> validar <i>-&gt;</i> <b>04</b> publicar</p>
+      <div><span className="signal-live" /> SISTEMA DE CONSTRUÇÃO</div>
+      <p><b>01</b> entender <i>→</i> <b>02</b> construir <i>→</i> <b>03</b> validar <i>→</i> <b>04</b> publicar</p>
     </div>
   </div>
 }
