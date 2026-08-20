@@ -128,7 +128,7 @@ function RecruiterAI() {
   }
   const [question, setQuestion] = useState('Segurança')
   return <section className="recruiter-ai reveal visible" id="ai">
-    <div className="ai-head"><div><p className="eyebrow"><span /> ASSISTENTE LOCAL / SEM API</p><h2>Pergunte ao <em>Ronas Desk.</em></h2><p>Um guia de avaliação técnica criado a partir das decisões reais do projeto.</p></div><span className="ai-online"><i /> ONLINE</span></div>
+    <div className="ai-head"><div><p className="eyebrow"><span /> RESPONDE SEM CHAMAR API</p><h2>Pergunte ao <em>Ronas Desk.</em></h2><p>Um guia de avaliação técnica criado a partir das decisões reais do projeto.</p></div><span className="ai-online"><i /> ONLINE</span></div>
     <div className="ai-console"><div className="ai-prompts">{Object.keys(answers).map(item => <button className={question === item ? 'active' : ''} key={item} type="button" onClick={() => setQuestion(item)}>{item}</button>)}</div><div className="ai-terminal"><small>recruiter@portfolio:~$ pergunta sobre {question.toLowerCase()}</small><p className="typed" key={question}>{answers[question]}</p><div><a href="https://github.com/ronaelmoura/ronas-desk" target="_blank" rel="noreferrer">Ver evidência no código ↗</a><a href="https://ronas-desk.onrender.com/" target="_blank" rel="noreferrer">Testar demonstração ↗</a></div></div></div>
   </section>
 }
@@ -316,7 +316,7 @@ function ProofLab() {
 
   return <section className="proof-lab reveal visible" id="laboratorio" aria-label="Laboratório de engenharia do Ronas Desk">
     <div className="proof-lab-heading">
-      <div><p className="eyebrow"><span /> RONAEL.OS / ENGINEERING LAB</p><h2>Não é uma animação.<br /><em>É meu jeito de construir.</em></h2></div>
+      <div><p className="eyebrow"><span /> COMO EU CONSTRUO</p><h2>Como eu <em>construo</em></h2></div>
       <p>Cinco experiências interativas em um único laboratório. Sem uma página interminável e sem esconder o raciocínio por trás do produto.</p>
     </div>
     <div className="proof-lab-nav" role="tablist" aria-label="Experiências técnicas">
@@ -484,13 +484,13 @@ function App() {
       <div className="container"><ProofLab /></div>
 
       <section className="section features">
-        <div className="container"><SectionHead tag="PRODUTO EM FUNCIONAMENTO" title="Uma operação de suporte completa. Não apenas telas." text="Cada módulo se conecta às regras do negócio, preserva o histórico e respeita as permissões do usuário." />
+        <div className="container"><SectionHead tag="PRODUTO EM FUNCIONAMENTO" title="O que o Ronas Desk faz" text="Cada módulo se conecta às regras do negócio, preserva o histórico e respeita as permissões do usuário." />
           <div className="feature-grid">{features.map((item, index) => <TiltCard as="article" max={5} className="feature-card reveal" style={{ '--stagger': index }} key={item.title}><div><span>{item.icon}</span><i>0{index+1}</i></div><h3>{item.title}</h3><p>{item.text}</p></TiltCard>)}</div>
         </div>
       </section>
 
       <section className="section roadmap-section">
-        <div className="container"><SectionHead tag="DO PROBLEMA À PRODUÇÃO" title="O que este projeto comprova na prática." />
+        <div className="container"><SectionHead tag="O QUE FOI VALIDADO" title="122 testes automatizados, rodando em produção" />
           <div className="roadmap reveal">{roadmap.map(item => <article className={item.active ? 'active' : ''} key={item.version}><div className="road-dot" /><div className="road-meta"><strong>{item.version}</strong><span>{item.state}</span></div><h3>{item.title}</h3><p>{item.text}</p></article>)}</div>
           <p className="road-note reveal">A demonstração usa dados fictícios e um perfil somente leitura, permitindo avaliar o produto sem expor credenciais administrativas ou dados reais.</p>
         </div>
@@ -498,7 +498,7 @@ function App() {
 
       <section className="section about" id="sobre">
         <div className="container about-grid">
-          <div className="about-title reveal"><p className="eyebrow"><span /> SOBRE MIM</p><h2>Técnica para construir.<br /><em>Curiosidade para evoluir.</em></h2></div>
+          <div className="about-title reveal"><p className="eyebrow"><span /> SOBRE MIM</p><h2>Sobre <em>mim</em></h2></div>
           <div className="about-copy reveal"><p className="large">Sou Desenvolvedor Full Stack e transformo problemas operacionais em <strong>produtos web claros, seguros e prontos para uso.</strong></p><p>Minha experiência em suporte de TI me ensinou a ouvir o usuário, investigar causas e assumir responsabilidade pela solução. Hoje aplico esse raciocínio em interfaces, APIs, bancos de dados e deploy.</p><p>Meu portfólio reúne diferentes tipos de entrega: um produto Full Stack em produção, dashboard de dados, API com regras de negócio e site orientado à conversão. Também aplico esse conhecimento em soluções para pequenos negócios por meio da <a className="inline-link" href="https://www.ronastech.com.br/" target="_blank" rel="noreferrer">Ronas Tech <Arrow /></a>.</p>
             <div className="about-links"><a href="https://www.linkedin.com/in/ronael-moura" target="_blank" rel="noreferrer">LinkedIn <Arrow /></a><a href="https://github.com/ronaelmoura" target="_blank" rel="noreferrer">GitHub <Arrow /></a></div>
           </div>
@@ -506,19 +506,19 @@ function App() {
       </section>
 
       <section className="section stack" id="stack">
-        <div className="container"><SectionHead tag="TECNOLOGIAS" title="Uma stack moderna para produtos completos." text="Ferramentas escolhidas para criar soluções úteis, legíveis e prontas para evoluir." />
+        <div className="container"><SectionHead tag="TECNOLOGIAS" title="React, Node.js, Express e MySQL" text="O que eu uso no dia a dia e por quê." />
           <div className="tech-grid">{techGroups.map((group, index) => <TiltCard as="article" max={5} className="tech-card reveal" style={{ '--stagger': index }} key={group.title}><div className="tech-icon">{group.icon}</div><small>{group.eyebrow}</small><h3>{group.title}</h3><p>{group.text}</p><div>{group.items.map(x=><span key={x}>{x}</span>)}</div></TiltCard>)}</div>
         </div>
       </section>
 
       <section className="section process-section" id="processo">
-        <div className="container"><SectionHead tag="COMO EU DESENVOLVO SOFTWARE" title="Processo claro. Decisões conscientes. Evolução contínua." />
+        <div className="container"><SectionHead tag="COMO EU DESENVOLVO SOFTWARE" title="Como eu trabalho" />
           <div className="process-grid">{process.map(([n,title,text],index)=><article className="process-card reveal" style={{ '--stagger': index }} key={n}><span>{n}</span><div><h3>{title}</h3><p>{text}</p></div></article>)}</div>
         </div>
       </section>
 
       <section className="section journey" id="jornada">
-        <div className="container"><SectionHead tag="MINHA JORNADA" title="Da curiosidade ao desenvolvimento de produtos reais." text="Uma trajetória construída entre formação, suporte, prática constante e compartilhamento de conhecimento." />
+        <div className="container"><SectionHead tag="MINHA JORNADA" title="De suporte de TI a desenvolvimento" text="Comecei atendendo chamado. Hoje construo o sistema que atende." />
           <div className="journey-grid reveal">
             <div className="journey-line" />
             <article style={{ '--stagger': 0 }}><span>01</span><small>BASE TÉCNICA</small><h3>Suporte em TI</h3><p>Manutenção de computadores, atendimento a usuários e solução de problemas: a base para entender tecnologia pela perspectiva de quem usa.</p></article>
@@ -530,7 +530,7 @@ function App() {
       </section>
 
       <section className="section credentials">
-        <div className="container"><SectionHead tag="FORMAÇÃO & CERTIFICADOS" title="Conhecimento validado. Prática em movimento." />
+        <div className="container"><SectionHead tag="FORMAÇÃO & CERTIFICADOS" title="Formação Full Stack, SENAI Piauí — 670h, 2025" />
           <div className="cert-grid">
             <article className="cert-main reveal"><div className="seal">S<span>✓</span></div><div><span className="cert-tag">CERTIFICADO PRINCIPAL</span><p>SENAI PIAUÍ · 670 HORAS · CONCEITO APTO</p><h3>Programador<br />Full Stack</h3><ul><li>Desenvolvimento Front-End</li><li>Desenvolvimento Back-End</li><li>APIs, dados, testes e Git</li></ul></div><strong className="cert-year">2025</strong></article>
             <div className="cert-side"><article className="reveal"><span>02</span><div><small>FORMAÇÃO COMPLEMENTAR</small><h3>Técnico em Suporte em TI</h3><p>Infraestrutura, manutenção e atendimento ao usuário.</p></div></article><article className="reveal"><span>03</span><div><small>PRODUTIVIDADE</small><h3>Pacote Office Completo</h3><p>Ferramentas para documentação, análise e comunicação.</p></div></article></div>
@@ -539,7 +539,7 @@ function App() {
       </section>
 
       <section className="section selected-projects" id="projetos">
-        <div className="container"><SectionHead tag="PROJETOS SELECIONADOS" title="Quatro desafios. Quatro tipos de entrega." text="Cada projeto foi pensado para demonstrar uma competência diferente — interface, dados, back-end, produto e experiência do cliente." />
+        <div className="container"><SectionHead tag="PROJETOS SELECIONADOS" title="Quatro projetos, quatro competências" text="Cada projeto foi pensado para demonstrar uma competência diferente — interface, dados, back-end, produto e experiência do cliente." />
           <div className="selected-projects-grid">{selectedProjects.map((project, index) => <ProjectCard project={project} index={index} key={project.name} />)}</div>
           <div className="project-lab-note reveal"><div><span>LABORATÓRIO TÉCNICO</span><strong>O processo também fica público.</strong><p>Documentei a investigação de um conflito ERESOLVE do npm para transformar um erro real em material útil para outros desenvolvedores.</p></div><a href="https://github.com/ronaelmoura/laboratorio-erro-eresolve-npm" target="_blank" rel="noreferrer">Abrir estudo de debugging <Arrow /></a></div>
         </div>
