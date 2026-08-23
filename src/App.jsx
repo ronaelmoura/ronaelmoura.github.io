@@ -122,7 +122,7 @@ function ProjectCard({ project, index }) {
 function RecruiterAI() {
   const answers = {
     'Segurança': 'No Ronas Desk, autenticação JWT, permissões por perfil, Helmet, rate limit no login e uma conta demo somente leitura protegem os fluxos principais.',
-    'Testes': 'O backend possui 122 testes automatizados. Eles validam regras, autenticação, rotas e cenários importantes antes do deploy.',
+    'Testes': 'O backend possui 316 testes automatizados. Eles validam regras, autenticação, rotas e cenários importantes antes do deploy.',
     'Arquitetura': 'A aplicação separa interface React, API REST Express, regras de negócio, MySQL com TLS, anexos privados no Cloudinary e deploy com Docker.',
     'Decisão difícil': 'Escolhi tratar a demo como ambiente somente leitura. Assim um recrutador consegue explorar o produto sem expor credenciais nem alterar dados.',
   }
@@ -202,7 +202,7 @@ function ArchitectureExplorer() {
   const [active, setActive] = useState(0)
   const layer = layers[active]
   return <section className="architecture-explorer reveal visible" aria-label="Arquitetura explorável do Ronas Desk">
-    <div className="architecture-heading"><div><p className="eyebrow"><span /> MAPA DE ARQUITETURA / CLIQUE PARA EXPLORAR</p><h2>Cinco camadas.<br /><em>Uma entrega real.</em></h2></div><p>O Ronas Desk foi construído para que cada parte tenha responsabilidade clara — e cada decisão possa ser verificada.</p></div>
+    <div className="architecture-heading"><div><p className="eyebrow"><span /> MAPA DE ARQUITETURA / CLIQUE PARA EXPLORAR</p><h2>As cinco camadas por trás do <em>Ronas Desk</em></h2></div><p>O Ronas Desk foi construído para que cada parte tenha responsabilidade clara — e cada decisão possa ser verificada.</p></div>
     <div className="architecture-grid">
       <div className="architecture-map" aria-label="Diagrama de arquitetura interativo">
         <div className="architecture-core">RONAS<br /><strong>DESK</strong><i /></div>
@@ -255,8 +255,8 @@ function DecisionJournal() {
       problem: 'Um produto com autenticação, chamados, históricos e indicadores acumula regras que não podem depender só de teste manual.',
       options: ['Validar apenas no navegador', 'Testar só endpoints principais', 'Cobrir fluxos e regras críticas de forma automatizada'],
       decision: 'Testes automatizados no backend integrados ao CI do GitHub Actions.',
-      result: 'O projeto chega a produção com 122 testes automatizados como rede de segurança para evolução contínua.',
-      evidence: '122 testes · lint · build · CI em push e pull request',
+      result: 'O projeto chega a produção com 316 testes automatizados como rede de segurança para evolução contínua.',
+      evidence: '316 testes · lint · build · CI em push e pull request',
     },
   ]
   const [open, setOpen] = useState(0)
@@ -274,7 +274,7 @@ function DeliveryReplay() {
     { id: 'problem', number: '01', label: 'Operação', title: 'O problema deixou de ser abstrato', text: 'A ideia começou com uma necessidade operacional: centralizar chamados, clientes e prioridades em um fluxo que uma equipe pudesse realmente usar.', metric: 'Foco: problema e usuário' },
     { id: 'product', number: '02', label: 'Produto', title: 'A base virou uma operação completa', text: 'Clientes, chamados, categorias, responsáveis, comentários, auditoria, portal do cliente, relatórios e indicadores entraram em ciclos incrementais.', metric: '19 sprints concluídas' },
     { id: 'security', number: '03', label: 'Confiança', title: 'O produto ganhou camadas de proteção', text: 'Autenticação JWT, regras por perfil, demo somente leitura, headers seguros, rate limit e anexos privados reduziram riscos nos fluxos principais.', metric: 'Segurança integrada ao fluxo' },
-    { id: 'quality', number: '04', label: 'Qualidade', title: 'Evoluir passou a ter rede de segurança', text: 'Testes automatizados, lint e build são executados no CI para que uma mudança nova não quebre regras que já funcionam.', metric: '122 testes automatizados' },
+    { id: 'quality', number: '04', label: 'Qualidade', title: 'Evoluir passou a ter rede de segurança', text: 'Testes automatizados, lint e build são executados no CI para que uma mudança nova não quebre regras que já funcionam.', metric: '316 testes automatizados' },
     { id: 'production', number: '05', label: 'Produção', title: 'O software saiu do computador', text: 'Docker, Nginx, Render, Aiven com TLS e Cloudinary conectam o código a uma demonstração pública e verificável.', metric: 'v1.0 estável online' },
   ]
   const [current, setCurrent] = useState(0)
@@ -330,7 +330,7 @@ function RecruiterMode({ onClose }) {
   const [step, setStep] = useState(0)
   const slides = [
     ['01 / QUEM É', 'Ronael Moura', 'Desenvolvedor Full Stack que transforma problemas operacionais em software web pronto para uso.', 'React · Node.js · Express · MySQL'],
-    ['02 / PROVA', 'Ronas Desk v1.0', 'Produto de Help Desk em produção, com clientes, chamados, SLA, auditoria, anexos e Portal do Cliente.', '19 sprints · 122 testes · demo online'],
+    ['02 / PROVA', 'Ronas Desk v1.0', 'Produto de Help Desk em produção, com clientes, chamados, SLA, auditoria, anexos e Portal do Cliente.', '19 sprints · 316 testes · demo online'],
     ['03 / ENGENHARIA', 'Da interface ao deploy', 'Constrói fluxo completo: experiência, API, regras de negócio, dados, segurança, testes e infraestrutura.', 'Docker · Render · Aiven TLS · Cloudinary'],
     ['04 / PRÓXIMO PASSO', 'Vamos conversar?', 'Aberto a uma oportunidade para contribuir em um time que entrega produtos com impacto real.', 'GitHub · LinkedIn · E-mail'],
   ]
@@ -441,7 +441,7 @@ function App() {
             <p className="hero-lead">Sou <strong>Ronael Moura</strong>. Construo aplicações completas com React, Node.js e uma visão prática de produto — da arquitetura ao deploy.</p>
             <HeroActions />
             <div className="proof">
-              <div><strong>122 testes</strong><span>Backend validado</span></div>
+              <div><strong>316 testes</strong><span>Backend validado</span></div>
               <div><strong>v1.0 online</strong><span>Produto entregue</span></div>
             </div>
           </div>
@@ -472,9 +472,9 @@ function App() {
             </div>
             <div className="showcase-copy reveal">
               <span className="version">ESTÁVEL · v1.0.0</span>
-              <h3>Da ideia ao deploy.<br />Um produto completo.</h3>
+              <h3>Um produto completo, do design ao deploy.</h3>
               <p>Desenvolvi o Ronas Desk para demonstrar domínio do ciclo inteiro de software: experiência do usuário, API, regras de negócio, banco de dados, segurança, testes e produção.</p>
-              <ul><li>19 sprints concluídas e fluxos validados</li><li>122 testes automatizados aprovados no backend</li><li>MySQL com TLS e migrações versionadas</li><li>Docker, Nginx, Render, Aiven e Cloudinary</li></ul>
+              <ul><li>19 sprints concluídas e fluxos validados</li><li>316 testes automatizados aprovados no backend</li><li>MySQL com TLS e migrações versionadas</li><li>Docker, Nginx, Render, Aiven e Cloudinary</li></ul>
               <div className="project-actions"><a ref={deskCtaRef} className="button primary" href="https://ronas-desk.onrender.com/" target="_blank" rel="noreferrer">Testar demonstração <Arrow /></a><a className="text-link" href="https://github.com/ronaelmoura/ronas-desk" target="_blank" rel="noreferrer">Ver código <Arrow /></a></div>
             </div>
           </div>
@@ -490,7 +490,7 @@ function App() {
       </section>
 
       <section className="section roadmap-section">
-        <div className="container"><SectionHead tag="O QUE FOI VALIDADO" title="122 testes automatizados, rodando em produção" />
+        <div className="container"><SectionHead tag="O QUE FOI VALIDADO" title="316 testes automatizados, rodando em produção" />
           <div className="roadmap reveal">{roadmap.map(item => <article className={item.active ? 'active' : ''} key={item.version}><div className="road-dot" /><div className="road-meta"><strong>{item.version}</strong><span>{item.state}</span></div><h3>{item.title}</h3><p>{item.text}</p></article>)}</div>
           <p className="road-note reveal">A demonstração usa dados fictícios e um perfil somente leitura, permitindo avaliar o produto sem expor credenciais administrativas ou dados reais.</p>
         </div>
@@ -518,7 +518,7 @@ function App() {
       </section>
 
       <section className="section journey" id="jornada">
-        <div className="container"><SectionHead tag="MINHA JORNADA" title="De suporte de TI a desenvolvimento" text="Comecei atendendo chamado. Hoje construo o sistema que atende." />
+        <div className="container"><SectionHead tag="MINHA JORNADA" title="De suporte de TI a desenvolvimento" text="Comecei atendendo chamados de suporte e hoje construo o sistema que faz esse atendimento acontecer." />
           <div className="journey-grid reveal">
             <div className="journey-line" />
             <article style={{ '--stagger': 0 }}><span>01</span><small>BASE TÉCNICA</small><h3>Suporte em TI</h3><p>Manutenção de computadores, atendimento a usuários e solução de problemas: a base para entender tecnologia pela perspectiva de quem usa.</p></article>
