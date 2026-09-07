@@ -1,4 +1,6 @@
-# Portfólio — Ronael Moura
+# Portfólio anterior — Ronael Moura
+
+> Esta é uma versão anterior, preservada como histórico de evolução. Para recrutamento e contato, consulte o [portfólio atual](https://ronaelmoura.github.io/portfolio-ronael-moura/) e seu [repositório](https://github.com/ronaelmoura/portfolio-ronael-moura). A documentação abaixo descreve esta versão histórica.
 
 Portfólio profissional de **Ronael Moura**, Desenvolvedor Full Stack e criador da Ronas Tech. A experiência apresenta projetos autorais de front-end, back-end e produto, com o **Ronas Desk** como principal estudo de caso.
 
