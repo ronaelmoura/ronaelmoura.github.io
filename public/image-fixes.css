@@ -1,0 +1,21 @@
+/* Ajustes visuais pontuais: preservar imagens completas e foto original */
+.project-image img{
+  object-fit:contain!important;
+  object-position:center!important;
+}
+.project-image:hover img{
+  transform:none!important;
+}
+.nexo .project-image img{
+  background:#dce5ed;
+}
+.climazen .project-image img,
+.light-shot img{
+  background:#d9dedc;
+}
+.journey-photo img{
+  aspect-ratio:3/4!important;
+  object-fit:cover!important;
+  object-position:center!important;
+  filter:none!important;
+}
