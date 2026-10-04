@@ -1,4 +1,4 @@
-/* Ajustes visuais pontuais: preservar imagens completas e foto original */
+/* Ajustes visuais pontuais: preservar imagens completas, foto original e marca oficial */
 .project-image img{
   object-fit:contain!important;
   object-position:center!important;
@@ -18,4 +18,17 @@
   object-fit:cover!important;
   object-position:center!important;
   filter:none!important;
+}
+
+/* Ronas Tech: usa a logo oficial já mantida no repositório/site da marca */
+.ronas-mark{
+  background:#080b10 url('https://raw.githubusercontent.com/ronaelmoura/ronas-tech-site/main/public/logo-ronas-tech.webp') center/88% auto no-repeat!important;
+  border:1px solid #283447!important;
+  color:transparent!important;
+  font-size:0!important;
+  letter-spacing:0!important;
+  overflow:hidden;
+}
+.ronas-mark span{
+  display:none!important;
 }
