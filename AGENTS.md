@@ -4,6 +4,9 @@ Keep the portfolio at the repository root and the iGreen landing page in
 `public/igreen-preview/`. Do not change the portfolio while working only on
 the iGreen preview.
 
+- Before creating, restructuring, or optimizing a landing page, its offer,
+  copy, sections, CTA, form, mobile experience, or conversion measurement, use
+  `$landing-page-conversion`.
 - Before changing Supabase schema, RLS, Edge Functions, lead ownership,
   consent, anti-abuse controls, or activation state, use
   `$igreen-crm-safety`.
@@ -14,4 +17,3 @@ the iGreen preview.
 
 The real lead capture must remain disabled until a production Cloudflare
 Turnstile widget is configured and an end-to-end submission is verified.
-

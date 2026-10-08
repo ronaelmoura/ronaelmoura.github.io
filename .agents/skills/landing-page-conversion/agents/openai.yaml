@@ -1,0 +1,4 @@
+interface:
+  display_name: "Landing page conversion"
+  short_description: "Create focused, measurable landing pages"
+  default_prompt: "Use $landing-page-conversion to improve this landing page around one clear audience, offer, and measurable conversion."
