@@ -1,0 +1,4 @@
+interface:
+  display_name: "iGreen preview release"
+  short_description: "Publish the preview without changing the portfolio"
+  default_prompt: "Publish this iGreen preview change, verify GitHub Pages, and prove that the main portfolio and capture safety state remain correct."

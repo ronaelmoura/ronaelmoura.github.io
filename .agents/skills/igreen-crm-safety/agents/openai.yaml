@@ -1,0 +1,4 @@
+interface:
+  display_name: "iGreen CRM safety"
+  short_description: "Protect CRM ownership, consent, RLS, and capture"
+  default_prompt: "Review or implement this iGreen CRM change while preserving owner isolation, consent evidence, anti-abuse controls, and the preview activation gate."

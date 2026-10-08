@@ -1,0 +1,4 @@
+interface:
+  display_name: "iGreen verification"
+  short_description: "Test the page, capture flow, database, and release"
+  default_prompt: "Verify the affected iGreen flow end to end and report exactly which layers passed, were simulated, or remain blocked."
