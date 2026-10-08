@@ -1,0 +1,5 @@
+project_id = "zzcjafyunfctnujavfzy"
+
+[functions.igreen-capture]
+verify_jwt = false
+entrypoint = "./functions/igreen-capture/index.ts"
