@@ -3,6 +3,7 @@
   "name": "igreen-tiangua",
   "compatibility_date": "2026-10-09",
   "assets": {
-    "directory": "../cloudflare-pages"
+    "directory": "./public",
+    "not_found_handling": "404-page"
   }
 }
